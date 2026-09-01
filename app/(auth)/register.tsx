@@ -2,14 +2,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useState } from "react";
 import {
-    KeyboardAvoidingView,
-    Platform,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { CheckIcon } from "../../components/eye-icon";
 import FormField from "../../components/form-field";
@@ -322,18 +322,22 @@ export default function RegisterScreen() {
                   })}
                 </View>
               </View>
-
-              <View style={styles.infoBox}>
-                <Text style={styles.infoText}>
-                  🎯 Com essas informações, a Flui calcula sua autonomia e
-                  sugere paradas ideais para suas viagens.
-                </Text>
-              </View>
             </View>
           )}
 
           {step === "account" && (
-            <PrimaryButton label="Continuar" onPress={handleNext} />
+            <View>
+              <PrimaryButton label="Continuar" onPress={handleNext} />
+
+              <View style={{ alignItems: "center" }}>
+                <Text style={styles.footerText}>
+                  Já tem uma conta?{" "}
+                  <Text style={styles.footerLink} onPress={handleLoginRedirect}>
+                    Entrar
+                  </Text>
+                </Text>
+              </View>
+            </View>
           )}
 
           {step === "vehicle" && (
@@ -347,15 +351,6 @@ export default function RegisterScreen() {
               />
             </View>
           )}
-
-          <View style={{ alignItems: "center" }}>
-            <Text style={styles.footerText}>
-              Já tem uma conta?{" "}
-              <Text style={styles.footerLink} onPress={handleLoginRedirect}>
-                Entrar
-              </Text>
-            </Text>
-          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
@@ -424,14 +419,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   batteryChipText: { fontSize: 14, fontWeight: "600", color: "#6B7280" },
-  infoBox: {
-    backgroundColor: "#FAF5FF",
-    borderRadius: 16,
-    padding: 16,
-    borderWidth: 1,
-    borderColor: "#F3E8FF",
-  },
-  infoText: { fontSize: 12, color: "#7E22CE", lineHeight: 17 },
   footerText: { fontSize: 14, color: "#6B7280" },
   footerLink: { fontWeight: "700", color: "#6D28D9" },
   doneScreen: {
