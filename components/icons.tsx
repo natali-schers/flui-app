@@ -39,6 +39,56 @@ export function EyeIcon({ visible }: { visible: boolean }) {
   );
 }
 
+export function BellIcon() {
+  return (
+    <Svg
+      viewBox="0 0 24 24"
+      width={16}
+      height={16}
+      fill="none"
+      stroke="#6B7280"
+      strokeWidth={2}
+    >
+      <Path
+        d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function SearchIcon() {
+  return (
+    <Svg
+      viewBox="0 0 24 24"
+      width={16}
+      height={16}
+      fill="none"
+      stroke="#9CA3AF"
+      strokeWidth={2}
+    >
+      <Circle cx={11} cy={11} r={8} />
+      <Path d="m21 21-4.35-4.35" strokeLinecap="round" />
+    </Svg>
+  );
+}
+
+export function ArrowRightIcon({ color = "#9CA3AF" }: { color?: string }) {
+  return (
+    <Svg
+      viewBox="0 0 24 24"
+      width={16}
+      height={16}
+      fill="none"
+      stroke={color}
+      strokeWidth={2}
+    >
+      <Path d="m9 18 6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+}
+
 export function CheckIcon() {
   return (
     <Svg

@@ -9,7 +9,12 @@ export default function TabLayout() {
         tabBarStyle: { display: "none" },
       }}
     >
-      <Tabs.Screen name="welcome" />
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "Home",
+        }}
+      />
     </Tabs>
   );
 }

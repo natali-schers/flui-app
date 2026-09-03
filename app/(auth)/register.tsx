@@ -11,8 +11,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { CheckIcon } from "../../components/eye-icon";
 import FormField from "../../components/form-field";
+import { CheckIcon } from "../../components/icons";
 import PasswordField from "../../components/password-field";
 import PrimaryButton from "../../components/primary-button";
 
@@ -133,7 +133,7 @@ export default function RegisterScreen() {
     setTimeout(() => {
       setLoading(false);
       setStep("done");
-      setTimeout(() => router.push("/(auth)/register"), 1500);
+      setTimeout(() => router.push("/(tabs)"), 1500);
     }, 1400);
   };
 

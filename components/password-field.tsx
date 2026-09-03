@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import { EyeIcon } from "./eye-icon";
+import { EyeIcon } from "./icons";
 
 interface PasswordFieldProps extends Omit<
   TextInputProps,

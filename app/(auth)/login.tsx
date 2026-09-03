@@ -2,13 +2,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useState } from "react";
 import {
-    KeyboardAvoidingView,
-    Platform,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    View,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 import FormField from "../../components/form-field";
 import PasswordField from "../../components/password-field";
@@ -48,7 +48,7 @@ export default function LoginScreen({ onLogin }: Props) {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      onLogin();
+      router.push("./(tabs)");
     }, 1200);
   };
 

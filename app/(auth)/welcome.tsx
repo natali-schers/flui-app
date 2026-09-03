@@ -1,11 +1,11 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 interface Props {
@@ -14,10 +14,6 @@ interface Props {
 }
 
 const perks = [
-  {
-    icon: "✦",
-    text: "Veja onde vale a pena carregar, não apenas onde é possível",
-  },
   { icon: "⚡", text: "Flui Score: a melhor opção para o seu momento" },
   { icon: "📍", text: "Disponibilidade em tempo real e avaliações confiáveis" },
 ];
@@ -33,9 +29,6 @@ export default function WelcomeScreen({ onLogin, onRegister }: Props) {
     >
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.topArea}>
-          <View style={styles.circleTopRight} />
-          <View style={styles.circleBottomLeft} />
-
           <View style={styles.logoBlock}>
             <Text style={styles.logo}>flui</Text>
             <View style={styles.divider} />
@@ -143,24 +136,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 24,
     paddingTop: 24,
-  },
-  circleTopRight: {
-    position: "absolute",
-    top: 40,
-    right: 32,
-    width: 128,
-    height: 128,
-    borderRadius: 64,
-    backgroundColor: "rgba(233,213,255,0.15)",
-  },
-  circleBottomLeft: {
-    position: "absolute",
-    bottom: 64,
-    left: 16,
-    width: 96,
-    height: 96,
-    borderRadius: 48,
-    backgroundColor: "rgba(196,181,253,0.12)",
   },
   logoBlock: { marginBottom: 32, alignItems: "center" },
   logo: {
@@ -301,8 +276,7 @@ const styles = StyleSheet.create({
   },
   ctaArea: {
     paddingHorizontal: 24,
-    paddingBottom: 32,
-    paddingTop: 16,
+    paddingBottom: 64,
     gap: 12,
   },
   primaryButton: {
