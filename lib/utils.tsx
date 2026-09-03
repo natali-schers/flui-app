@@ -1,22 +1,5 @@
 import { Station } from "./types";
 
-/** Emoji usado para cada comodidade. Adicione novas chaves conforme necessário. */
-export const AMENITY_ICONS: Record<string, string> = {
-  "Wi-Fi": "📶",
-  Café: "☕",
-  Banheiro: "🚻",
-  Loja: "🛍️",
-  Restaurante: "🍽️",
-  "Estacionamento coberto": "🅿️",
-  "Segurança 24h": "🛡️",
-  "Praça de alimentação": "🍔",
-};
-
-/**
- * Cores do gradiente do badge de score, do pior (vermelho) ao melhor
- * (verde). Retorna um array de 2 cores hex para usar direto no
- * `colors` do `LinearGradient` (expo-linear-gradient).
- */
 export function getScoreGradient(score: number): [string, string] {
   if (score >= 85) return ["#16A34A", "#22C55E"];
   if (score >= 70) return ["#7C3AED", "#B747F8"];

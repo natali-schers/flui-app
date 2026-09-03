@@ -8,12 +8,11 @@ import {
   View,
 } from "react-native";
 import Svg, { Circle, Path, Rect } from "react-native-svg";
-import { ArrowRightIcon, BellIcon, SearchIcon } from "../../components/icons";
+import { BellIcon, SearchIcon } from "../../components/icons";
 import PrimaryButton from "../../components/primary-button";
 import StationCard from "../../components/station-card";
 import { stations } from "../../lib/data";
 import { AppScreen } from "../../lib/types";
-import { AMENITY_ICONS } from "../../lib/utils";
 
 interface Props {
   onSelectStation: (id: string) => void;
@@ -21,14 +20,6 @@ interface Props {
   onOpenTravel: () => void;
   onNavigate: (screen: AppScreen) => void;
 }
-
-const intents = [
-  { icon: "⚡", label: "Carregar rápido" },
-  { icon: "💰", label: "Economizar" },
-  { icon: "☕", label: "Confortável" },
-  { icon: "🌙", label: "À noite" },
-  { icon: "🚗", label: "Viajando" },
-];
 
 function ChargerIllustration() {
   return (
@@ -83,13 +74,11 @@ export default function HomeScreen({
           </View>
         </View>
 
-        {/* Greeting */}
         <View style={styles.greeting}>
-          <Text style={styles.greetingHello}>Olá, Natali 👋</Text>
+          <Text style={styles.greetingHello}>Olá, Natali!</Text>
           <Text style={styles.greetingTitle}>Onde você quer carregar?</Text>
         </View>
 
-        {/* Search bar */}
         <TouchableOpacity
           onPress={() => onNavigate({ type: "results" })}
           style={styles.searchBar}
@@ -103,23 +92,6 @@ export default function HomeScreen({
       </LinearGradient>
 
       <View style={styles.body}>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.intentsRow}
-        >
-          {intents.map((intent) => (
-            <TouchableOpacity
-              key={intent.label}
-              style={styles.intentChip}
-              activeOpacity={0.7}
-            >
-              <Text>{intent.icon}</Text>
-              <Text style={styles.intentLabel}>{intent.label}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-
         <View>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Melhor opção para você</Text>
@@ -169,14 +141,6 @@ export default function HomeScreen({
                 <Text style={styles.metaText}>🕐 {featured.timeMin} min</Text>
               </View>
 
-              <View style={styles.amenitiesRow}>
-                {featured.amenities.slice(0, 3).map((a: string) => (
-                  <Text key={a} style={styles.amenityText}>
-                    {AMENITY_ICONS[a]} {a}
-                  </Text>
-                ))}
-              </View>
-
               <View style={styles.reasonBox}>
                 <Text style={styles.reasonText}>
                   &ldquo;{featured.reason}&rdquo;
@@ -192,7 +156,6 @@ export default function HomeScreen({
           </View>
         </View>
 
-        {/* Nearby stations */}
         <View>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Pontos próximos</Text>
@@ -211,27 +174,6 @@ export default function HomeScreen({
             ))}
           </View>
         </View>
-
-        {/* Plan trip CTA */}
-        <TouchableOpacity
-          onPress={onOpenTravel}
-          style={styles.tripCta}
-          activeOpacity={0.8}
-        >
-          <LinearGradient
-            colors={["#EDE9FE", "#DDD6FE"]}
-            style={styles.tripCtaIcon}
-          >
-            <Text style={{ fontSize: 18 }}>🗺️</Text>
-          </LinearGradient>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.tripCtaTitle}>Planejar viagem</Text>
-            <Text style={styles.tripCtaSubtitle}>
-              Calcule paradas para sua próxima viagem
-            </Text>
-          </View>
-          <ArrowRightIcon />
-        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -301,24 +243,6 @@ const styles = StyleSheet.create({
   },
   searchPlaceholder: { color: "#9CA3AF", fontSize: 14, flex: 1 },
   body: { paddingHorizontal: 20, paddingBottom: 24, gap: 20 },
-  intentsRow: { gap: 8, paddingVertical: 2 },
-  intentChip: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 6,
-    backgroundColor: "white",
-    borderRadius: 999,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: "#F3F4F6",
-    shadowColor: "#000",
-    shadowOpacity: 0.04,
-    shadowRadius: 4,
-    shadowOffset: { width: 0, height: 1 },
-    elevation: 1,
-  },
-  intentLabel: { fontSize: 14, fontWeight: "500", color: "#374151" },
   sectionHeader: {
     flexDirection: "row",
     alignItems: "center",
@@ -408,7 +332,6 @@ const styles = StyleSheet.create({
     gap: 12,
     marginBottom: 12,
   },
-  amenityText: { fontSize: 12, color: "#4B5563" },
   reasonBox: {
     backgroundColor: "#FAF5FF",
     borderRadius: 12,
@@ -418,28 +341,4 @@ const styles = StyleSheet.create({
   },
   reasonText: { fontSize: 12, color: "#7E22CE", lineHeight: 17 },
   featuredCta: { paddingVertical: 10, borderRadius: 12, marginBottom: 0 },
-  tripCta: {
-    backgroundColor: "white",
-    borderRadius: 16,
-    padding: 16,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    borderWidth: 1,
-    borderColor: "#F3F4F6",
-    shadowColor: "#000",
-    shadowOpacity: 0.04,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 1,
-  },
-  tripCtaIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 12,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  tripCtaTitle: { fontWeight: "600", color: "#111827", fontSize: 14 },
-  tripCtaSubtitle: { fontSize: 12, color: "#6B7280", marginTop: 2 },
 });

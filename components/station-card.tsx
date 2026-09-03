@@ -2,12 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Station } from "../lib/types";
-import {
-  AMENITY_ICONS,
-  getScoreGradient,
-  getScoreLabel,
-  getStatusColor,
-} from "../lib/utils";
+import { getScoreGradient, getScoreLabel, getStatusColor } from "../lib/utils";
 
 interface Props {
   station: Station;
@@ -79,16 +74,6 @@ export default function StationCard({
           </View>
           <ScoreBadge score={station.score} />
         </View>
-
-        {amenities.length > 0 && (
-          <View style={styles.amenitiesRowSmall}>
-            {amenities.map((a: (typeof amenities)[number]) => (
-              <Text key={a} style={styles.amenityTextSmall}>
-                {AMENITY_ICONS[a] || "•"} {a}
-              </Text>
-            ))}
-          </View>
-        )}
       </TouchableOpacity>
     );
   }
@@ -121,18 +106,6 @@ export default function StationCard({
         <Text style={styles.metaText}>⚡ {station.maxPower} kW</Text>
         <Text style={styles.metaText}>🕐 {station.timeMin} min</Text>
       </View>
-
-      {amenities.length > 0 && (
-        <View style={styles.amenitiesRowLarge}>
-          {amenities.map((a: (typeof amenities)[number]) => (
-            <View key={a} style={styles.amenityPill}>
-              <Text style={styles.amenityTextLarge}>
-                {AMENITY_ICONS[a]} {a}
-              </Text>
-            </View>
-          ))}
-        </View>
-      )}
 
       {showReason && (
         <View style={styles.reasonBox}>
