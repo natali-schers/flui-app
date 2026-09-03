@@ -133,7 +133,7 @@ export default function RegisterScreen() {
     setTimeout(() => {
       setLoading(false);
       setStep("done");
-      setTimeout(() => router.push("/(tabs)"), 1500);
+      setTimeout(() => router.push("../(tabs)"), 2500);
     }, 1400);
   };
 
@@ -158,7 +158,6 @@ export default function RegisterScreen() {
         <Text style={styles.doneSubtitle}>
           Bem-vindo à Flui, {name.split(" ")[0]}.
         </Text>
-        <Text style={styles.doneHint}>Preparando sua experiência…</Text>
         <View style={{ marginTop: 24, flexDirection: "row", gap: 4 }}>
           <View style={styles.dot} />
           <View style={styles.dot} />
@@ -448,6 +447,5 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   doneSubtitle: { fontSize: 14, color: "#6B7280", marginBottom: 8 },
-  doneHint: { fontSize: 12, color: "#9CA3AF" },
   dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: "#9333EA" },
 });

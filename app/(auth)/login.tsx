@@ -48,7 +48,7 @@ export default function LoginScreen({ onLogin }: Props) {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      router.push("./(tabs)");
+      router.push("../(tabs)");
     }, 1200);
   };
 
