@@ -557,7 +557,7 @@ const styles = StyleSheet.create({
   distanceText: { fontSize: 14, fontWeight: "500", color: "#374151" },
   saveButton: {
     paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingVertical: 8,
     borderRadius: 12,
     borderWidth: 2,
     flexDirection: "row",
