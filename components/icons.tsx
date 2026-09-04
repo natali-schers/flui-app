@@ -89,17 +89,69 @@ export function ArrowRightIcon({ color = "#9CA3AF" }: { color?: string }) {
   );
 }
 
-export function CheckIcon() {
+export function CheckIcon({
+  size = 40,
+  strokeWidth = 2.5,
+}: {
+  size?: number;
+  strokeWidth?: number;
+}) {
   return (
     <Svg
       viewBox="0 0 24 24"
-      width={40}
-      height={40}
+      width={size}
+      height={size}
       fill="none"
       stroke="white"
-      strokeWidth={2.5}
+      strokeWidth={strokeWidth}
     >
       <Path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+}
+
+export function BackIcon({ color = "white" }: { color?: string }) {
+  return (
+    <Svg
+      viewBox="0 0 24 24"
+      width={16}
+      height={16}
+      fill="none"
+      stroke={color}
+      strokeWidth={2.5}
+    >
+      <Path d="m15 18-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+    </Svg>
+  );
+}
+
+export function HeartIcon({ filled }: { filled: boolean }) {
+  return (
+    <Svg
+      viewBox="0 0 24 24"
+      width={20}
+      height={20}
+      fill={filled ? "#9333EA" : "none"}
+      stroke={filled ? "#9333EA" : "#6B7280"}
+      strokeWidth={2}
+    >
+      <Path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+    </Svg>
+  );
+}
+
+export function ClockIcon({ color = "#9333EA" }: { color?: string }) {
+  return (
+    <Svg
+      viewBox="0 0 24 24"
+      width={16}
+      height={16}
+      fill="none"
+      stroke={color}
+      strokeWidth={2}
+    >
+      <Circle cx={12} cy={12} r={10} />
+      <Path d="M12 6v6l4 2" strokeLinecap="round" strokeLinejoin="round" />
     </Svg>
   );
 }

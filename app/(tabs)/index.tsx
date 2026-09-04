@@ -1,4 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 import React from "react";
 import {
   ScrollView,
@@ -7,57 +8,23 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Svg, { Circle, Path, Rect } from "react-native-svg";
 import { BellIcon, SearchIcon } from "../../components/icons";
 import PrimaryButton from "../../components/primary-button";
 import StationCard from "../../components/station-card";
 import { stations } from "../../lib/data";
-import { AppScreen } from "../../lib/types";
 
-interface Props {
-  onSelectStation: (id: string) => void;
-  onOpenMap: () => void;
-  onOpenTravel: () => void;
-  onNavigate: (screen: AppScreen) => void;
-}
-
-function ChargerIllustration() {
-  return (
-    <Svg viewBox="0 0 60 40" width={96} height={64} fill="none">
-      <Rect x={5} y={8} width={50} height={24} rx={12} fill="#7C3AED" />
-      <Circle cx={18} cy={32} r={6} fill="#5B21B6" />
-      <Circle cx={42} cy={32} r={6} fill="#5B21B6" />
-      <Path
-        d="M20 16 L27 22 L22 22 L22 30"
-        stroke="white"
-        strokeWidth={2}
-        strokeLinecap="round"
-      />
-    </Svg>
-  );
-}
-
-export default function HomeScreen({
-  onSelectStation,
-  onOpenMap,
-  onOpenTravel,
-  onNavigate,
-}: Props) {
+export default function HomeScreen() {
   const featured = stations[0];
   const nearby = stations.slice(1, 3);
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ flexGrow: 1 }}>
-      {/* Header gradient section */}
       <LinearGradient
         colors={["#F3E8FF", "#FAF5FF", "#F9FAFB"]}
         locations={[0, 0.5, 1]}
         style={styles.headerSection}
       >
-        {/* Top bar */}
         <View style={styles.topBar}>
-          {/* Note: true gradient text needs @react-native-masked-view/masked-view;
-              using solid brand purple here to avoid the extra native dependency. */}
           <Text style={styles.logo}>flui</Text>
           <View style={styles.topBarActions}>
             <TouchableOpacity style={styles.iconButton}>
@@ -80,7 +47,7 @@ export default function HomeScreen({
         </View>
 
         <TouchableOpacity
-          onPress={() => onNavigate({ type: "results" })}
+          //onPress={() => router.push("/results")}
           style={styles.searchBar}
           activeOpacity={0.8}
         >
@@ -95,7 +62,8 @@ export default function HomeScreen({
         <View>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Melhor opção para você</Text>
-            <TouchableOpacity onPress={onOpenMap}>
+            <TouchableOpacity //onPress={onOpenMap}
+            >
               <Text style={styles.sectionLink}>Ver mapa</Text>
             </TouchableOpacity>
           </View>
@@ -149,7 +117,7 @@ export default function HomeScreen({
 
               <PrimaryButton
                 label="Ver ponto"
-                onPress={() => onSelectStation(featured.id)}
+                onPress={() => router.push(`../station/${featured.id}`)}
                 gradientStyle={styles.featuredCta}
               />
             </View>
@@ -159,7 +127,8 @@ export default function HomeScreen({
         <View>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Pontos próximos</Text>
-            <TouchableOpacity onPress={() => onNavigate({ type: "results" })}>
+            <TouchableOpacity //onPress={() => router.push("/travel")}
+            >
               <Text style={styles.sectionLink}>Ver todos</Text>
             </TouchableOpacity>
           </View>
@@ -168,7 +137,7 @@ export default function HomeScreen({
               <StationCard
                 key={s.id}
                 station={s}
-                onPress={() => onSelectStation(s.id)}
+                onPress={() => router.push(`../station/${s.id}`)}
                 size="small"
               />
             ))}

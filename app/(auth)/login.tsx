@@ -14,13 +14,7 @@ import FormField from "../../components/form-field";
 import PasswordField from "../../components/password-field";
 import PrimaryButton from "../../components/primary-button";
 
-interface Props {
-  onLogin: () => void;
-  onRegister: () => void;
-  onBack: () => void;
-}
-
-export default function LoginScreen({ onLogin }: Props) {
+export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
