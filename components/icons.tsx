@@ -155,3 +155,53 @@ export function ClockIcon({ color = "#9333EA" }: { color?: string }) {
     </Svg>
   );
 }
+
+export function FilterIcon({ color = "#9333EA" }: { color?: string }) {
+  return (
+    <Svg
+      viewBox="0 0 24 24"
+      width={16}
+      height={16}
+      fill="none"
+      stroke={color}
+      strokeWidth={2}
+    >
+      <Path
+        d="M4 6h16M7 12h10M10 18h4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+export function LocateIcon({ color = "#7C3AED" }: { color?: string }) {
+  return (
+    <Svg
+      viewBox="0 0 24 24"
+      width={20}
+      height={20}
+      fill="none"
+      stroke={color}
+      strokeWidth={2}
+    >
+      <Circle cx={12} cy={12} r={3} />
+      <Path d="M12 2v3M12 19v3M2 12h3M19 12h3" strokeLinecap="round" />
+    </Svg>
+  );
+}
+
+export function CloseIcon({ color = "#6B7280" }: { color?: string }) {
+  return (
+    <Svg
+      viewBox="0 0 24 24"
+      width={16}
+      height={16}
+      fill="none"
+      stroke={color}
+      strokeWidth={2}
+    >
+      <Path d="M18 6 6 18M6 6l12 12" strokeLinecap="round" />
+    </Svg>
+  );
+}

@@ -62,8 +62,7 @@ export default function HomeScreen() {
         <View>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Melhor opção para você</Text>
-            <TouchableOpacity //onPress={onOpenMap}
-            >
+            <TouchableOpacity onPress={() => router.push("/map")}>
               <Text style={styles.sectionLink}>Ver mapa</Text>
             </TouchableOpacity>
           </View>

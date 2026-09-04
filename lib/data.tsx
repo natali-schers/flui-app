@@ -7,6 +7,8 @@ import { Station } from "./types";
 export const stations: Station[] = [
   {
     id: "1",
+    latitude: -23.532,
+    longitude: -46.728,
     name: "Shopping Villa Lobos",
     neighborhood: "Alto de Pinheiros",
     rating: 4.5,
@@ -62,6 +64,8 @@ export const stations: Station[] = [
   },
   {
     id: "2",
+    latitude: -23.527,
+    longitude: -46.698,
     name: "Posto Ipiranga - Marginal",
     neighborhood: "Lapa",
     rating: 4,
@@ -107,6 +111,8 @@ export const stations: Station[] = [
   },
   {
     id: "3",
+    latitude: -23.5613,
+    longitude: -46.6558,
     name: "Estação Elera - Av. Paulista",
     neighborhood: "Bela Vista",
     rating: 4.5,
@@ -162,6 +168,8 @@ export const stations: Station[] = [
   },
   {
     id: "4",
+    latitude: -23.599,
+    longitude: -46.707,
     name: "EcoCharge - Morumbi",
     neighborhood: "Morumbi",
     rating: 3.5,
