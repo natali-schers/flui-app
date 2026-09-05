@@ -2,14 +2,9 @@ import { BackIcon, ClockIcon, HeartIcon } from "@/components/icons";
 import PrimaryButton from "@/components/primary-button";
 import { stations } from "@/lib/data";
 import { AppScreen, StationScoreDetails } from "@/lib/types";
-import {
-  AMENITY_ICONS,
-  getScoreGradient,
-  getStatusColor,
-  unsplashUrl,
-} from "@/lib/utils";
+import { getScoreGradient, getStatusColor, unsplashUrl } from "@/lib/utils";
 import { LinearGradient } from "expo-linear-gradient";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Image,
   ScrollView,
@@ -101,19 +96,13 @@ export default function StationDetailScreen({
         <LinearGradient
           colors={["rgba(0,0,0,0.3)", "rgba(0,0,0,0)", "rgba(0,0,0,0.4)"]}
           locations={[0, 0.6, 1]}
-          style={StyleSheet.absoluteFillObject}
+          style={StyleSheet.absoluteFill}
         />
         <TouchableOpacity
           onPress={onBack}
           style={[styles.heroButton, { left: 16 }]}
         >
-          <BackIcon color="#374151" />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => onToggleFavorite(stationId)}
-          style={[styles.heroButton, { right: 16 }]}
-        >
-          <HeartIcon filled={isFav} />
+          <BackIcon color="#8C4BFC" />
         </TouchableOpacity>
 
         {station.id === "3" && (
@@ -231,7 +220,8 @@ export default function StationDetailScreen({
                   style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
                 >
                   <Text style={styles.connectorType}>{c.type}</Text>
-                  <Text style={styles.connectorPower}>⚡ {c.power} kW</Text>
+                  <Text>·</Text>
+                  <Text style={styles.connectorType}>{c.power} kW</Text>
                 </View>
                 <View style={styles.statusInline}>
                   <View
@@ -313,9 +303,6 @@ export default function StationDetailScreen({
             <View style={styles.amenitiesGrid}>
               {station.amenities.map((a) => (
                 <View key={a} style={styles.amenityCell}>
-                  <Text style={{ fontSize: 20 }}>
-                    {AMENITY_ICONS[a] || "•"}
-                  </Text>
                   <Text style={styles.amenityCellText}>{a}</Text>
                 </View>
               ))}
@@ -432,7 +419,7 @@ export default function StationDetailScreen({
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#F9FAFB" },
+  screen: { flex: 1, backgroundColor: "#F9FAFB", marginBottom: 48 },
   hero: { height: 200, backgroundColor: "#EDE9FE" },
   heroImage: { width: "100%", height: "100%" },
   heroButton: {
@@ -562,7 +549,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     gap: 6,
+    minWidth: 120,
   },
   saveButtonText: { fontSize: 14, fontWeight: "600" },
   cardHeaderRow: {
@@ -622,7 +611,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 4,
   },
-  amenityCellText: { fontSize: 10, color: "#4B5563", textAlign: "center" },
+  amenityCellText: { fontSize: 12, color: "#4B5563", textAlign: "center" },
   ratingsSummaryRow: { flexDirection: "row", alignItems: "center", gap: 16 },
   ratingsSummaryBox: { alignItems: "center" },
   ratingsSummaryValue: { fontSize: 30, fontWeight: "900", color: "#111827" },

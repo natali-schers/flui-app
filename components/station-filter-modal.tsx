@@ -1,13 +1,12 @@
-import { AMENITY_ICONS } from "@/lib/utils";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
-    Modal,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Modal,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { BackIcon } from "./icons";
 import PrimaryButton from "./primary-button";
@@ -176,7 +175,7 @@ export default function StationFilterModal({
                         selected && styles.chipTextSelected,
                       ]}
                     >
-                      ⚡ {option} kW{option === 150 ? "+" : ""}
+                      {option} kW{option === 150 ? "+" : ""}
                     </Text>
                   </TouchableOpacity>
                 );
@@ -200,9 +199,7 @@ export default function StationFilterModal({
                     }
                     style={styles.amenityRow}
                   >
-                    <Text style={styles.amenityRowText}>
-                      {AMENITY_ICONS[option] || "•"} {option}
-                    </Text>
+                    <Text style={styles.amenityRowText}>{option}</Text>
                     <View
                       style={[
                         styles.checkbox,

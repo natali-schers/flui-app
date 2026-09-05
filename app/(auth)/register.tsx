@@ -176,7 +176,6 @@ export default function RegisterScreen() {
         style={styles.header}
       >
         <SafeAreaView>
-          <Text style={styles.logo}>flui</Text>
           <Text style={styles.title}>
             {step === "account" ? "Crie sua conta" : "Seu veículo"}
           </Text>
@@ -358,22 +357,15 @@ export default function RegisterScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: "#F9FAFB" },
-  header: { paddingHorizontal: 20, paddingTop: 8, paddingBottom: 32 },
-  logo: {
-    color: "white",
-    fontSize: 30,
-    fontWeight: "900",
-    letterSpacing: -0.9,
-    marginTop: 24,
-  },
+  header: { paddingHorizontal: 20, paddingTop: 40, paddingBottom: 32 },
   title: {
     color: "white",
     fontWeight: "700",
     fontSize: 24,
-    marginTop: 8,
+    marginTop: 16,
     lineHeight: 28,
   },
-  subtitle: { color: "rgba(255,255,255,0.6)", fontSize: 14, marginTop: 4 },
+  subtitle: { color: "rgba(255,255,255,0.6)", fontSize: 14 },
   formScroll: { flex: 1, marginTop: -16 },
   formCard: {
     backgroundColor: "white",

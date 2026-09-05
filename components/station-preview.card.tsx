@@ -1,8 +1,7 @@
 import { Station } from "@/lib/types";
-import { AMENITY_ICONS, getScoreGradient, getStatusColor } from "@/lib/utils";
+import { getScoreGradient, getStatusColor } from "@/lib/utils";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
-import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import PrimaryButton from "./primary-button";
 
@@ -23,12 +22,20 @@ export default function StationPreviewCard({ station, onViewDetails }: Props) {
           <Text style={styles.name} numberOfLines={1}>
             {station.name}
           </Text>
-          <View style={styles.ratingRow}>
-            <Text style={styles.stars}>
-              {"★".repeat(Math.floor(station.rating))}
-            </Text>
-            <Text style={styles.ratingValue}>{station.rating}</Text>
-            <Text style={styles.scoreInline}>· {station.score} Flui Score</Text>
+
+          <View style={styles.metaRow}>
+            <View style={styles.statusInline}>
+              <View
+                style={[styles.statusDot, { backgroundColor: statusColor }]}
+              />
+              <Text style={[styles.statusText, { color: statusColor }]}>
+                {station.available}/{station.total} disponíveis
+              </Text>
+            </View>
+            <Text style={styles.metaDot}>·</Text>
+            <Text style={styles.metaText}>{station.maxPower} kW</Text>
+            <Text style={styles.metaDot}>·</Text>
+            <Text style={styles.metaText}>{station.timeMin} min</Text>
           </View>
         </View>
         <LinearGradient
@@ -42,24 +49,11 @@ export default function StationPreviewCard({ station, onViewDetails }: Props) {
         </LinearGradient>
       </View>
 
-      <View style={styles.metaRow}>
-        <View style={styles.statusInline}>
-          <View style={[styles.statusDot, { backgroundColor: statusColor }]} />
-          <Text style={[styles.statusText, { color: statusColor }]}>
-            {station.available}/{station.total} disponíveis
-          </Text>
-        </View>
-        <Text style={styles.metaText}>⚡ {station.maxPower} kW</Text>
-        <Text style={styles.metaText}>🕐 {station.timeMin} min</Text>
-      </View>
-
       {station.amenities.length > 0 && (
         <View style={styles.amenitiesRow}>
           {station.amenities.slice(0, 3).map((a) => (
             <View key={a} style={styles.amenityChip}>
-              <Text style={styles.amenityChipText}>
-                {AMENITY_ICONS[a] || "•"} {a}
-              </Text>
+              <Text style={styles.amenityChipText}>{a}</Text>
             </View>
           ))}
         </View>
@@ -98,20 +92,12 @@ const styles = StyleSheet.create({
   },
   topRow: {
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "space-between",
     gap: 12,
     marginBottom: 12,
   },
-  name: { fontWeight: "700", color: "#111827", fontSize: 16 },
-  ratingRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-    marginTop: 4,
-  },
-  stars: { color: "#FBBF24", fontSize: 12 },
-  ratingValue: { fontSize: 12, fontWeight: "600", color: "#374151" },
+  name: { fontWeight: "700", color: "#111827", fontSize: 16, marginBottom: 4 },
   scoreInline: { fontSize: 11, color: "#9CA3AF" },
   scoreBadge: {
     borderRadius: 12,
@@ -134,19 +120,20 @@ const styles = StyleSheet.create({
   metaRow: {
     flexDirection: "row",
     flexWrap: "wrap",
-    columnGap: 12,
+    columnGap: 8,
     rowGap: 4,
-    marginBottom: 12,
   },
   statusInline: { flexDirection: "row", alignItems: "center", gap: 4 },
   statusDot: { width: 8, height: 8, borderRadius: 4 },
   statusText: { fontSize: 12, fontWeight: "500" },
   metaText: { fontSize: 12, color: "#6B7280" },
+  metaDot: { fontSize: 12, color: "#6B7280" },
   amenitiesRow: {
     flexDirection: "row",
     flexWrap: "wrap",
     gap: 8,
-    marginBottom: 16,
+    marginBottom: 20,
+    marginTop: 8,
   },
   amenityChip: {
     backgroundColor: "#F3F4F6",

@@ -1,14 +1,13 @@
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
 import {
-    ActivityIndicator,
-    StyleProp,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    TouchableOpacityProps,
-    View,
-    ViewStyle,
+  ActivityIndicator,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  View,
+  ViewStyle,
 } from "react-native";
 
 interface PrimaryButtonProps extends TouchableOpacityProps {
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
   button: {
     width: "100%",
     paddingVertical: 16,
-    borderRadius: 16,
+    borderRadius: 12,
     alignItems: "center",
     marginBottom: 16,
     shadowColor: "#7C3AED",

@@ -1,7 +1,9 @@
+import { unsplashUrl } from "@/lib/utils";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
-import React from "react";
 import {
+  Image,
+  ImageBackground,
   ScrollView,
   StyleSheet,
   Text,
@@ -20,24 +22,19 @@ export default function HomeScreen() {
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ flexGrow: 1 }}>
       <LinearGradient
-        colors={["#F3E8FF", "#FAF5FF", "#F9FAFB"]}
+        colors={["#eddcfd", "#f7eeff", "#F9FAFB"]}
         locations={[0, 0.5, 1]}
         style={styles.headerSection}
       >
         <View style={styles.topBar}>
-          <Text style={styles.logo}>flui</Text>
+          <Image
+            source={require("../../assets/images/flui-purple.png")}
+            style={styles.logo}
+          />
           <View style={styles.topBarActions}>
             <TouchableOpacity style={styles.iconButton}>
               <BellIcon />
             </TouchableOpacity>
-            <LinearGradient
-              colors={["#A855F7", "#8B5CF6"]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.avatar}
-            >
-              <Text style={styles.avatarText}>N</Text>
-            </LinearGradient>
           </View>
         </View>
 
@@ -68,14 +65,15 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.featuredCard}>
-            <LinearGradient
-              colors={["#EDE9FE", "#F3E8FF"]}
-              style={styles.featuredHero}
+            <ImageBackground
+              resizeMode="cover"
+              style={{ width: "100%", height: 160 }}
+              source={{ uri: unsplashUrl(featured.unsplashId, 800, 400) }}
             >
               <View style={styles.updatedBadge}>
                 <Text style={styles.updatedBadgeText}>Atualizado agora</Text>
               </View>
-            </LinearGradient>
+            </ImageBackground>
 
             <View style={styles.featuredBody}>
               <View style={styles.featuredTopRow}>
@@ -104,8 +102,10 @@ export default function HomeScreen() {
                     {featured.available}/{featured.total} disponíveis
                   </Text>
                 </View>
-                <Text style={styles.metaText}>⚡ {featured.maxPower} kW</Text>
-                <Text style={styles.metaText}>🕐 {featured.timeMin} min</Text>
+                <Text style={styles.metaDot}>·</Text>
+                <Text style={styles.metaText}>{featured.maxPower} kW</Text>
+                <Text style={styles.metaDot}>·</Text>
+                <Text style={styles.metaText}>{featured.timeMin} min</Text>
               </View>
 
               <View style={styles.reasonBox}>
@@ -149,7 +149,7 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: "#F9FAFB" },
-  headerSection: { paddingHorizontal: 20, paddingTop: 32, paddingBottom: 24 },
+  headerSection: { paddingHorizontal: 20, paddingTop: 40, paddingBottom: 24 },
   topBar: {
     flexDirection: "row",
     alignItems: "center",
@@ -157,10 +157,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logo: {
-    fontSize: 26,
-    fontWeight: "800",
-    letterSpacing: -0.8,
-    color: "#7C3AED",
+    width: 56,
+    height: 24,
+    resizeMode: "contain",
   },
   topBarActions: { flexDirection: "row", alignItems: "center", gap: 8 },
   iconButton: {
@@ -176,16 +175,8 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     elevation: 2,
   },
-  avatar: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  avatarText: { color: "white", fontSize: 12, fontWeight: "700" },
-  greeting: { marginBottom: 16 },
-  greetingHello: { color: "#6B7280", fontSize: 14 },
+  greeting: { marginBottom: 8 },
+  greetingHello: { color: "#6B7280", fontSize: 16 },
   greetingTitle: {
     color: "#111827",
     fontSize: 20,
@@ -231,7 +222,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     elevation: 1,
   },
-  featuredHero: { height: 80, alignItems: "center", justifyContent: "center" },
   featuredHeroIllustration: { opacity: 0.2 },
   updatedBadge: {
     position: "absolute",
@@ -281,8 +271,7 @@ const styles = StyleSheet.create({
   metaRow: {
     flexDirection: "row",
     flexWrap: "wrap",
-    columnGap: 12,
-    rowGap: 4,
+    columnGap: 8,
     marginBottom: 12,
   },
   availabilityPill: { flexDirection: "row", alignItems: "center", gap: 4 },
@@ -300,6 +289,7 @@ const styles = StyleSheet.create({
     gap: 12,
     marginBottom: 12,
   },
+  metaDot: { fontSize: 12, color: "#9CA3AF" },
   reasonBox: {
     backgroundColor: "#FAF5FF",
     borderRadius: 12,

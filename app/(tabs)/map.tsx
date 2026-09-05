@@ -1,7 +1,7 @@
 import { FilterIcon, LocateIcon, SearchIcon } from "@/components/icons";
 import StationFilterModal, {
-    EMPTY_FILTERS,
-    StationFilters,
+  EMPTY_FILTERS,
+  StationFilters,
 } from "@/components/station-filter-modal";
 import StationMapMarker from "@/components/station-map-marker";
 import StationPreviewCard from "@/components/station-preview.card";
@@ -11,13 +11,13 @@ import * as Location from "expo-location";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
 import {
-    Platform,
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Platform,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE, Region } from "react-native-maps";
 
@@ -128,7 +128,7 @@ export default function MapScreen() {
       <MapView
         ref={mapRef}
         provider={Platform.OS === "android" ? PROVIDER_GOOGLE : undefined}
-        style={StyleSheet.absoluteFillObject}
+        style={StyleSheet.absoluteFill}
         initialRegion={DEFAULT_REGION}
         onRegionChangeComplete={setRegion}
         onPress={() => setSelectedStationId(null)}
@@ -139,7 +139,10 @@ export default function MapScreen() {
             <Marker
               key={s.id}
               coordinate={{ latitude: s.latitude!, longitude: s.longitude! }}
-              onPress={() => setSelectedStationId(s.id)}
+              onPress={(e) => {
+                e.stopPropagation();
+                setSelectedStationId(s.id);
+              }}
               anchor={{ x: 0.5, y: 1 }}
             >
               <StationMapMarker

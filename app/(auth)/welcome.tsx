@@ -1,7 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
-import React from "react";
 import {
+  Image,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -29,7 +29,11 @@ export default function WelcomeScreen() {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.topArea}>
           <View style={styles.logoBlock}>
-            <Text style={styles.logo}>flui</Text>
+            <Image
+              source={require("../../assets/images/flui-white.png")}
+              style={styles.logo}
+            />
+
             <View style={styles.divider} />
             <Text style={styles.tagline}>
               Não mostramos apenas onde carregar.{"\n"}
@@ -78,13 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   logoBlock: { alignItems: "center" },
-  logo: {
-    color: "white",
-    fontSize: 52,
-    fontWeight: "900",
-    letterSpacing: -1.5,
-    lineHeight: 54,
-  },
+  logo: { width: 100, height: 50, resizeMode: "contain" },
   divider: {
     width: 40,
     height: 2,

@@ -1,5 +1,4 @@
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Station } from "../lib/types";
 import { getScoreGradient, getScoreLabel, getStatusColor } from "../lib/utils";
@@ -67,7 +66,7 @@ export default function StationCard({
                 </Text>
               </View>
               <Text style={styles.metaDot}>·</Text>
-              <Text style={styles.metaText}>⚡ {station.maxPower} kW</Text>
+              <Text style={styles.metaText}>{station.maxPower} kW</Text>
               <Text style={styles.metaDot}>·</Text>
               <Text style={styles.metaText}>{station.timeMin} min</Text>
             </View>
