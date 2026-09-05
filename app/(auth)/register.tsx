@@ -156,7 +156,7 @@ export default function RegisterScreen() {
         </LinearGradient>
         <Text style={styles.doneTitle}>Conta criada!</Text>
         <Text style={styles.doneSubtitle}>
-          Bem-vindo à Flui, {name.split(" ")[0]}.
+          Boas-vindas à Flui, {name.split(" ")[0]}.
         </Text>
         <View style={{ marginTop: 24, flexDirection: "row", gap: 4 }}>
           <View style={styles.dot} />
@@ -181,33 +181,9 @@ export default function RegisterScreen() {
           </Text>
           <Text style={styles.subtitle}>
             {step === "account"
-              ? "Cadastre-se e encontre os melhores pontos de recarga"
+              ? "Cadastre-se e encontre os melhores pontos de recarga para seu veículo"
               : "Assim personalizamos as recomendações para você (opcional)"}
           </Text>
-
-          <View style={{ flexDirection: "row", gap: 6, marginTop: 24 }}>
-            {["Conta", "Veículo"].map((label, i) => (
-              <View key={label} style={{ flex: 1, gap: 4 }}>
-                <View
-                  style={{
-                    height: 4,
-                    borderRadius: 999,
-                    backgroundColor:
-                      i <= stepIndex ? "white" : "rgba(255,255,255,0.25)",
-                  }}
-                />
-                <Text
-                  style={{
-                    fontSize: 10,
-                    fontWeight: "500",
-                    color: i === stepIndex ? "white" : "rgba(255,255,255,0.45)",
-                  }}
-                >
-                  {label}
-                </Text>
-              </View>
-            ))}
-          </View>
         </SafeAreaView>
       </LinearGradient>
 
@@ -220,6 +196,30 @@ export default function RegisterScreen() {
           contentContainerStyle={styles.formCard}
           keyboardShouldPersistTaps="handled"
         >
+          <View style={{ flexDirection: "row", gap: 6, marginBottom: 16 }}>
+            {["Conta", "Veículo"].map((label, i) => (
+              <View key={label} style={{ flex: 1, gap: 4 }}>
+                <View
+                  style={{
+                    height: 4,
+                    borderRadius: 999,
+                    backgroundColor:
+                      i <= stepIndex ? "#6D28D9" : "rgb(182, 182, 182)",
+                  }}
+                />
+                <Text
+                  style={{
+                    fontSize: 10,
+                    fontWeight: "500",
+                    color: i <= stepIndex ? "#6D28D9" : "rgb(182, 182, 182)",
+                  }}
+                >
+                  {label}
+                </Text>
+              </View>
+            ))}
+          </View>
+
           {step === "account" && (
             <View style={{ gap: 12, marginBottom: 20 }}>
               <FormField
@@ -272,7 +272,9 @@ export default function RegisterScreen() {
                     return (
                       <TouchableOpacity
                         key={v}
-                        onPress={() => setVehicle(v)}
+                        onPress={() =>
+                          vehicle !== v ? setVehicle(v) : setVehicle("")
+                        }
                         activeOpacity={0.7}
                         style={[
                           styles.vehicleChip,
@@ -301,7 +303,11 @@ export default function RegisterScreen() {
                     return (
                       <TouchableOpacity
                         key={kwh}
-                        onPress={() => setBatteryKwh(kwh)}
+                        onPress={() =>
+                          batteryKwh !== kwh
+                            ? setBatteryKwh(kwh)
+                            : setBatteryKwh("")
+                        }
                         style={[
                           styles.batteryChip,
                           selected && styles.vehicleChipSelected,
@@ -340,6 +346,13 @@ export default function RegisterScreen() {
 
           {step === "vehicle" && (
             <View style={{ gap: 12, marginBottom: 20 }}>
+              <TouchableOpacity
+                onPress={() => setStep("account")}
+                style={styles.backButton}
+              >
+                <Text style={styles.backButtonText}> Voltar</Text>
+              </TouchableOpacity>
+
               <PrimaryButton
                 label="Criar minha conta"
                 loadingLabel="Criando conta…"
@@ -357,16 +370,15 @@ export default function RegisterScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: "#F9FAFB" },
-  header: { paddingHorizontal: 20, paddingTop: 40, paddingBottom: 32 },
+  header: { paddingHorizontal: 20, paddingTop: 56 },
   title: {
     color: "white",
     fontWeight: "700",
     fontSize: 24,
-    marginTop: 16,
     lineHeight: 28,
   },
   subtitle: { color: "rgba(255,255,255,0.6)", fontSize: 14 },
-  formScroll: { flex: 1, marginTop: -16 },
+  formScroll: { flex: 1, marginTop: -32 },
   formCard: {
     backgroundColor: "white",
     borderTopLeftRadius: 24,
@@ -440,4 +452,15 @@ const styles = StyleSheet.create({
   },
   doneSubtitle: { fontSize: 14, color: "#6B7280", marginBottom: 8 },
   dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: "#9333EA" },
+  backButton: {
+    width: "100%",
+    paddingVertical: 14,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: "#E9D5FF",
+    backgroundColor: "#FAF5FF",
+    alignItems: "center",
+  },
+  backButtonText: { fontSize: 14, fontWeight: "600", color: "#7E22CE" },
+  reviewCtaText: { fontSize: 14, fontWeight: "600", color: "#7E22CE" },
 });

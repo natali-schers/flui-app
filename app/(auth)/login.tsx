@@ -59,9 +59,10 @@ export default function LoginScreen() {
         style={styles.header}
       >
         <SafeAreaView>
-          <Text style={styles.title}>Bem-vindo de volta</Text>
+          <Text style={styles.title}>Boas-vindas de volta!</Text>
           <Text style={styles.subtitle}>
-            Entre para encontrar os melhores pontos de recarga
+            Entre para encontrar os melhores pontos de recarga para o seu carro
+            elétrico
           </Text>
         </SafeAreaView>
       </LinearGradient>
@@ -127,16 +128,15 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: "#F9FAFB" },
-  header: { paddingHorizontal: 20, paddingTop: 40, paddingBottom: 32 },
+  header: { paddingHorizontal: 20, paddingTop: 56 },
   title: {
     color: "white",
     fontWeight: "700",
     fontSize: 24,
-    marginTop: 16,
     lineHeight: 28,
   },
   subtitle: { color: "rgba(255,255,255,0.6)", fontSize: 14 },
-  formScroll: { flex: 1, marginTop: -16 },
+  formScroll: { flex: 1, marginTop: -32 },
   formCard: {
     backgroundColor: "white",
     borderTopLeftRadius: 24,
