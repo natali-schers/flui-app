@@ -4,13 +4,13 @@ import React, { useCallback, useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import FormField from "../../components/form-field";
 import { CheckIcon } from "../../components/icons";
 import PasswordField from "../../components/password-field";

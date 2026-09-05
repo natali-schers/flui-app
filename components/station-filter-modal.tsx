@@ -1,13 +1,13 @@
 import { useState } from "react";
 import {
   Modal,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { BackIcon } from "./icons";
 import PrimaryButton from "./primary-button";
 

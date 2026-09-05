@@ -4,12 +4,12 @@ import { useCallback, useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import FormField from "../../components/form-field";
 import PasswordField from "../../components/password-field";
 import PrimaryButton from "../../components/primary-button";

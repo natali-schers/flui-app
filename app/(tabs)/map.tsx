@@ -12,7 +12,6 @@ import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
 import {
   Platform,
-  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
@@ -20,6 +19,7 @@ import {
   View,
 } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE, Region } from "react-native-maps";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const DEFAULT_REGION: Region = {
   latitude: -23.5613,
