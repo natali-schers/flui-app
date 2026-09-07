@@ -35,10 +35,11 @@ interface Props {
 const intentOptions = [
   "Carregar rápido",
   "Economizar",
-  "Baixo movimento",
+  "Aberto 24h",
   "Aberto agora",
-  "Confortável para esperar",
+  "Baixo movimento",
   "Seguro à noite",
+  "Confortável para esperar",
 ];
 
 const connectorOptions = ["CCS2", "CHAdeMO", "Tipo 2"];

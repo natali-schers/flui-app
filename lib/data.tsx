@@ -190,7 +190,7 @@ export const stations: Station[] = [
     timeMin: 20,
     distanceText: "9,4 km · 20 min de carro",
     movement: "moderate",
-    amenities: ["Segurança 24h"],
+    amenities: ["Segurança 24h", "Aberto 24h"],
     reason: "Sem vagas livres no momento, mas rota rápida até lá.",
     unsplashId: "photo-1621905251189-08b45d6a269e",
     hours: "06h às 22h",

@@ -61,6 +61,40 @@ function stationMatchesFilters(station: Station, filters: StationFilters) {
       !station.amenities.some((a) => ["Café", "Restaurante"].includes(a))
     )
       return false;
+
+    if (intent === "Aberto 24h" && !station.hours.includes("24")) return false;
+
+    if (intent === "Aberto agora") {
+      const now = new Date();
+      if (!station.hours || station.hours.includes("24")) continue;
+
+      const hoursMatch = station.hours.match(
+        /^(\d{1,2})h(?:([0-5]\d))? às (\d{1,2})h(?:([0-5]\d))?$/,
+      );
+      if (!hoursMatch) return false;
+
+      const [, startHourValue, startMinuteValue, endHourValue, endMinuteValue] =
+        hoursMatch;
+      const startHour = Number(startHourValue);
+      const startMinute = Number(startMinuteValue ?? 0);
+      const endHour = Number(endHourValue);
+      const endMinute = Number(endMinuteValue ?? 0);
+      const startTime = new Date(now);
+      startTime.setHours(startHour, startMinute, 0, 0);
+      const endTime = new Date(now);
+      endTime.setHours(endHour, endMinute, 0, 0);
+
+      if (endTime <= startTime) endTime.setDate(endTime.getDate() + 1);
+
+      const currentTime = new Date(now);
+      if (
+        currentTime < startTime &&
+        endTime.getDate() !== startTime.getDate()
+      ) {
+        currentTime.setDate(currentTime.getDate() + 1);
+      }
+      if (currentTime < startTime || currentTime > endTime) return false;
+    }
   }
 
   return true;
