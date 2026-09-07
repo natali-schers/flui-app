@@ -2,7 +2,12 @@ import { BackIcon, ClockIcon, HeartIcon } from "@/components/icons";
 import PrimaryButton from "@/components/primary-button";
 import { stations } from "@/lib/data";
 import { AppScreen, StationScoreDetails } from "@/lib/types";
-import { getScoreGradient, getStatusColor, unsplashUrl } from "@/lib/utils";
+import {
+  getScoreGradient,
+  getScoreLabel,
+  getStatusColor,
+  unsplashUrl,
+} from "@/lib/utils";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import {
@@ -145,7 +150,11 @@ export default function StationDetailScreen({
             >
               <Text style={styles.scoreValue}>{station.score}</Text>
               <Text style={styles.scoreLabel}>FLUI SCORE</Text>
-              <Text style={styles.scoreHint}>Excelente</Text>
+              {getScoreLabel(station.score) && (
+                <Text style={styles.scoreHint}>
+                  {getScoreLabel(station.score)}
+                </Text>
+              )}
             </LinearGradient>
           </TouchableOpacity>
         </View>

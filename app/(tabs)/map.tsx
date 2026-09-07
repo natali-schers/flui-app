@@ -11,6 +11,7 @@ import * as Location from "expo-location";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
 import {
+  Keyboard,
   Platform,
   StyleSheet,
   Text,
@@ -27,6 +28,33 @@ const DEFAULT_REGION: Region = {
   latitudeDelta: 0.08,
   longitudeDelta: 0.08,
 };
+
+function isOpen24Hours(hours?: string) {
+  const normalizedHours = hours?.trim().toLowerCase();
+  return (
+    normalizedHours === "24" ||
+    normalizedHours === "24h" ||
+    normalizedHours === "24 horas"
+  );
+}
+
+function isOpenNow(hours?: string, now = new Date()) {
+  if (!hours) return false;
+  if (isOpen24Hours(hours)) return true;
+
+  const hoursMatch = hours.match(
+    /^(\d{1,2})h(?:([0-5]\d))?\s+às\s+(\d{1,2})h(?:([0-5]\d))?$/i,
+  );
+  if (!hoursMatch) return false;
+
+  const [, startHour, startMinute, endHour, endMinute] = hoursMatch;
+  const start = Number(startHour) * 60 + Number(startMinute ?? 0);
+  const end = Number(endHour) * 60 + Number(endMinute ?? 0);
+  const current = now.getHours() * 60 + now.getMinutes();
+
+  if (end > start) return current >= start && current <= end;
+  return current >= start || current <= end;
+}
 
 function stationMatchesFilters(station: Station, filters: StationFilters) {
   if (filters.connectors.length > 0) {
@@ -62,38 +90,12 @@ function stationMatchesFilters(station: Station, filters: StationFilters) {
     )
       return false;
 
-    if (intent === "Aberto 24h" && !station.hours.includes("24")) return false;
+    if (intent === "Aberto 24h" && !isOpen24Hours(station.hours)) {
+      return false;
+    }
 
-    if (intent === "Aberto agora") {
-      const now = new Date();
-      if (!station.hours || station.hours.includes("24")) continue;
-
-      const hoursMatch = station.hours.match(
-        /^(\d{1,2})h(?:([0-5]\d))? às (\d{1,2})h(?:([0-5]\d))?$/,
-      );
-      if (!hoursMatch) return false;
-
-      const [, startHourValue, startMinuteValue, endHourValue, endMinuteValue] =
-        hoursMatch;
-      const startHour = Number(startHourValue);
-      const startMinute = Number(startMinuteValue ?? 0);
-      const endHour = Number(endHourValue);
-      const endMinute = Number(endMinuteValue ?? 0);
-      const startTime = new Date(now);
-      startTime.setHours(startHour, startMinute, 0, 0);
-      const endTime = new Date(now);
-      endTime.setHours(endHour, endMinute, 0, 0);
-
-      if (endTime <= startTime) endTime.setDate(endTime.getDate() + 1);
-
-      const currentTime = new Date(now);
-      if (
-        currentTime < startTime &&
-        endTime.getDate() !== startTime.getDate()
-      ) {
-        currentTime.setDate(currentTime.getDate() + 1);
-      }
-      if (currentTime < startTime || currentTime > endTime) return false;
+    if (intent === "Aberto agora" && !isOpenNow(station.hours)) {
+      return false;
     }
   }
 
@@ -108,6 +110,7 @@ export default function MapScreen() {
     null,
   );
   const [region, setRegion] = useState<Region>(DEFAULT_REGION);
+  const [mapInstanceKey, setMapInstanceKey] = useState(0);
   const mapRef = React.useRef<MapView>(null);
 
   const filteredStations = useMemo(() => {
@@ -154,12 +157,14 @@ export default function MapScreen() {
       setFilters(EMPTY_FILTERS);
       setSelectedStationId(null);
       setRegion(DEFAULT_REGION);
+      setMapInstanceKey((key) => key + 1);
     }, []),
   );
 
   return (
     <View style={styles.screen}>
       <MapView
+        key={mapInstanceKey}
         ref={mapRef}
         provider={Platform.OS === "android" ? PROVIDER_GOOGLE : undefined}
         style={StyleSheet.absoluteFill}
@@ -173,8 +178,10 @@ export default function MapScreen() {
             <Marker
               key={s.id}
               coordinate={{ latitude: s.latitude!, longitude: s.longitude! }}
+              tracksViewChanges
               onPress={(e) => {
                 e.stopPropagation();
+                Keyboard.dismiss();
                 setSelectedStationId(s.id);
               }}
               anchor={{ x: 0.5, y: 1 }}

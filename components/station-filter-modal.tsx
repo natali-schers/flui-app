@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Modal,
   ScrollView,
@@ -18,12 +18,14 @@ export interface StationFilters {
   amenities: string[];
 }
 
-export const EMPTY_FILTERS: StationFilters = {
+export const createEmptyFilters = (): StationFilters => ({
   intents: [],
   connectors: [],
   minPower: null,
   amenities: [],
-};
+});
+
+export const EMPTY_FILTERS = createEmptyFilters();
 
 interface Props {
   visible: boolean;
@@ -66,7 +68,18 @@ export default function StationFilterModal({
 }: Props) {
   const [filters, setFilters] = useState<StationFilters>(initialFilters);
 
-  const handleClear = () => setFilters(EMPTY_FILTERS);
+  useEffect(() => {
+    if (!visible) return;
+
+    setFilters({
+      intents: [...initialFilters.intents],
+      connectors: [...initialFilters.connectors],
+      minPower: initialFilters.minPower,
+      amenities: [...initialFilters.amenities],
+    });
+  }, [visible, initialFilters]);
+
+  const handleClear = () => setFilters(createEmptyFilters());
 
   const handleApply = () => {
     onApply(filters);

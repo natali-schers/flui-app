@@ -28,11 +28,10 @@ export function getScoreGradient(score: number): [string, string] {
 }
 
 /** Rótulo curto (adjetivo) correspondente à faixa de score. */
-export function getScoreLabel(score: number): string {
+export function getScoreLabel(score: number): string | undefined {
   if (score >= 85) return "Excelente";
   if (score >= 70) return "Ótimo";
-  if (score >= 50) return "Bom";
-  return "Regular";
+  if (score >= 60) return "Bom";
 }
 
 /** Cor (hex) associada ao status de disponibilidade do ponto. */
