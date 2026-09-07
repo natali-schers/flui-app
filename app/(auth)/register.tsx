@@ -16,16 +16,112 @@ import { CheckIcon } from "../../components/icons";
 import PasswordField from "../../components/password-field";
 import PrimaryButton from "../../components/primary-button";
 
-const vehicles = [
-  "BYD Dolphin",
-  "BYD Seal",
-  "Volvo EX30",
-  "Volvo XC40 Elétrico",
-  "GM Bolt",
-  "VW ID.4",
-  "Outro",
+type VehicleOption = {
+  name: string;
+  batteries: string[];
+  connectors: string[];
+};
+
+const vehicleOptions: VehicleOption[] = [
+  {
+    name: "BYD Dolphin Mini",
+    batteries: ["30,2", "38,9"],
+    connectors: ["Tipo 2", "CCS2"],
+  },
+  { name: "BYD Dolphin", batteries: ["44,9"], connectors: ["Tipo 2", "CCS2"] },
+  {
+    name: "BYD Dolphin Plus",
+    batteries: ["60,5"],
+    connectors: ["Tipo 2", "CCS2"],
+  },
+  { name: "BYD Seal", batteries: ["82,5"], connectors: ["Tipo 2", "CCS2"] },
+  {
+    name: "BYD Yuan Plus",
+    batteries: ["60,5"],
+    connectors: ["Tipo 2", "CCS2"],
+  },
+  {
+    name: "BYD Song Plus",
+    batteries: ["18,3"],
+    connectors: ["Tipo 2", "CCS2"],
+  },
+  {
+    name: "GWM Ora 03",
+    batteries: ["48,0", "63,1"],
+    connectors: ["Tipo 2", "CCS2"],
+  },
+  {
+    name: "GWM Haval H6 PHEV",
+    batteries: ["34,0"],
+    connectors: ["Tipo 2", "CCS2"],
+  },
+  {
+    name: "Volvo EX30",
+    batteries: ["51,0", "69,0"],
+    connectors: ["Tipo 2", "CCS2"],
+  },
+  {
+    name: "Volvo XC40 Elétrico",
+    batteries: ["69,0", "78,0"],
+    connectors: ["Tipo 2", "CCS2"],
+  },
+  {
+    name: "Volvo C40",
+    batteries: ["69,0", "78,0"],
+    connectors: ["Tipo 2", "CCS2"],
+  },
+  { name: "GM Bolt", batteries: ["66,0"], connectors: ["Tipo 2", "CCS2"] },
+  { name: "JAC E-JS1", batteries: ["30,2"], connectors: ["Tipo 2"] },
+  { name: "Renault Kwid E-Tech", batteries: ["26,8"], connectors: ["Tipo 2"] },
+  {
+    name: "Nissan Leaf",
+    batteries: ["40,0", "62,0"],
+    connectors: ["Tipo 2", "CHAdeMO"],
+  },
+  { name: "VW ID.4", batteries: ["77,0"], connectors: ["Tipo 2", "CCS2"] },
+  {
+    name: "Peugeot e-2008",
+    batteries: ["50,0"],
+    connectors: ["Tipo 2", "CCS2"],
+  },
+  {
+    name: "Renault Mégane E-Tech",
+    batteries: ["60,0"],
+    connectors: ["Tipo 2", "CCS2"],
+  },
+  { name: "Kia Niro EV", batteries: ["64,8"], connectors: ["Tipo 2", "CCS2"] },
+  {
+    name: "Mini Cooper SE",
+    batteries: ["32,6"],
+    connectors: ["Tipo 2", "CCS2"],
+  },
+  { name: "Outro", batteries: [], connectors: [] },
 ];
-const batteryOptions = ["40", "50", "60", "75", "100", "82"];
+
+const allBatteryOptions = [
+  "18,3",
+  "26,8",
+  "30,2",
+  "32,6",
+  "34,0",
+  "38,9",
+  "40,0",
+  "44,9",
+  "48,0",
+  "50,0",
+  "51,0",
+  "60,0",
+  "60,5",
+  "62,0",
+  "63,1",
+  "64,8",
+  "66,0",
+  "69,0",
+  "77,0",
+  "78,0",
+  "82,5",
+];
+const allConnectorOptions = ["Tipo 2", "CCS2", "CHAdeMO", "Outro"];
 
 function PasswordStrength({ password }: { password: string }) {
   const checks = [
@@ -95,6 +191,7 @@ export default function RegisterScreen() {
   const [password, setPassword] = useState("");
   const [vehicle, setVehicle] = useState("");
   const [batteryKwh, setBatteryKwh] = useState("");
+  const [connector, setConnector] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
@@ -106,6 +203,7 @@ export default function RegisterScreen() {
       setPassword("");
       setVehicle("");
       setBatteryKwh("");
+      setConnector("");
       setStep("account");
     }, []),
   );
@@ -141,7 +239,22 @@ export default function RegisterScreen() {
     router.push("/(auth)/login");
   };
 
+  const handleVehicleSelect = (name: string) => {
+    setVehicle(vehicle === name ? "" : name);
+    setBatteryKwh("");
+    setConnector("");
+  };
+
   const stepIndex = step === "account" ? 0 : step === "vehicle" ? 1 : 2;
+  const selectedVehicle = vehicleOptions.find(
+    (option) => option.name === vehicle,
+  );
+  const batteryOptions = selectedVehicle?.batteries.length
+    ? selectedVehicle.batteries
+    : allBatteryOptions;
+  const connectorOptions = selectedVehicle?.connectors.length
+    ? selectedVehicle.connectors
+    : allConnectorOptions;
 
   if (step === "done") {
     return (
@@ -267,14 +380,12 @@ export default function RegisterScreen() {
                   Modelo do veículo
                 </Text>
                 <View style={styles.vehicleGrid}>
-                  {vehicles.map((v) => {
-                    const selected = vehicle === v;
+                  {vehicleOptions.map((option) => {
+                    const selected = vehicle === option.name;
                     return (
                       <TouchableOpacity
-                        key={v}
-                        onPress={() =>
-                          vehicle !== v ? setVehicle(v) : setVehicle("")
-                        }
+                        key={option.name}
+                        onPress={() => handleVehicleSelect(option.name)}
                         activeOpacity={0.7}
                         style={[
                           styles.vehicleChip,
@@ -287,7 +398,7 @@ export default function RegisterScreen() {
                             selected && styles.vehicleChipTextSelected,
                           ]}
                         >
-                          {v}
+                          {option.name}
                         </Text>
                       </TouchableOpacity>
                     );
@@ -320,6 +431,38 @@ export default function RegisterScreen() {
                           ]}
                         >
                           {kwh} kWh
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              </View>
+
+              <View>
+                <Text style={styles.label}>Conector do veículo</Text>
+                <View style={styles.batteryRow}>
+                  {connectorOptions.map((option) => {
+                    const selected = connector === option;
+                    return (
+                      <TouchableOpacity
+                        key={option}
+                        onPress={() =>
+                          connector !== option
+                            ? setConnector(option)
+                            : setConnector("")
+                        }
+                        style={[
+                          styles.batteryChip,
+                          selected && styles.vehicleChipSelected,
+                        ]}
+                      >
+                        <Text
+                          style={[
+                            styles.batteryChipText,
+                            selected && styles.vehicleChipTextSelected,
+                          ]}
+                        >
+                          {option}
                         </Text>
                       </TouchableOpacity>
                     );
