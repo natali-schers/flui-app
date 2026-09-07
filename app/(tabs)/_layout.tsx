@@ -2,6 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { ComponentProps } from "react";
 import { Platform, View } from "react-native";
+import { colors } from "../../lib/theme/colors";
 
 function TabIcon({
   name,
@@ -21,10 +22,10 @@ function TabIcon({
 }
 
 export default function TabLayout() {
-  const activeColor = "#7C3AED";
-  const inactiveColor = "#B747F8";
-  const bgColor = "#FFFFFF";
-  const borderColor = "#E5E5E5";
+  const activeColor = colors.brand.primary;
+  const inactiveColor = colors.brand.light;
+  const bgColor = colors.neutral.white;
+  const borderColor = colors.neutral.borderSubtle;
 
   return (
     <Tabs

@@ -15,6 +15,7 @@ import FormField from "../../components/form-field";
 import { CheckIcon } from "../../components/icons";
 import PasswordField from "../../components/password-field";
 import PrimaryButton from "../../components/primary-button";
+import { colors } from "../../lib/theme/colors";
 
 type VehicleOption = {
   name: string;
@@ -130,7 +131,12 @@ function PasswordStrength({ password }: { password: string }) {
     { label: "Número", ok: /[0-9]/.test(password) },
   ];
   const score = checks.filter((c) => c.ok).length;
-  const colors = ["", "#EF4444", "#F59E0B", "#22C55E"];
+  const strengthColors = [
+    "",
+    colors.semantic.errorBright,
+    colors.semantic.warningBright,
+    colors.semantic.successBright,
+  ];
   const labels = ["", "Fraca", "Média", "Forte"];
 
   if (!password) return null;
@@ -145,7 +151,8 @@ function PasswordStrength({ password }: { password: string }) {
               flex: 1,
               height: 4,
               borderRadius: 999,
-              backgroundColor: i <= score ? colors[score] : "#E5E7EB",
+              backgroundColor:
+                i <= score ? strengthColors[score] : colors.neutral.border,
             }}
           />
         ))}
@@ -158,12 +165,22 @@ function PasswordStrength({ password }: { password: string }) {
               style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
             >
               <Text
-                style={{ fontSize: 10, color: c.ok ? "#16A34A" : "#9CA3AF" }}
+                style={{
+                  fontSize: 10,
+                  color: c.ok
+                    ? colors.semantic.success
+                    : colors.neutral.placeholder,
+                }}
               >
                 {c.ok ? "✓" : "○"}
               </Text>
               <Text
-                style={{ fontSize: 10, color: c.ok ? "#16A34A" : "#9CA3AF" }}
+                style={{
+                  fontSize: 10,
+                  color: c.ok
+                    ? colors.semantic.success
+                    : colors.neutral.placeholder,
+                }}
               >
                 {c.label}
               </Text>
@@ -172,7 +189,11 @@ function PasswordStrength({ password }: { password: string }) {
         </View>
         {score > 0 && (
           <Text
-            style={{ fontSize: 10, fontWeight: "600", color: colors[score] }}
+            style={{
+              fontSize: 10,
+              fontWeight: "600",
+              color: strengthColors[score],
+            }}
           >
             {labels[score]}
           </Text>
@@ -260,7 +281,7 @@ export default function RegisterScreen() {
     return (
       <SafeAreaView style={styles.doneScreen}>
         <LinearGradient
-          colors={["#7C3AED", "#B747F8"]}
+          colors={colors.gradients.scoreGood}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.doneIcon}
@@ -283,7 +304,7 @@ export default function RegisterScreen() {
   return (
     <View style={styles.screen}>
       <LinearGradient
-        colors={["#3B0764", "#7C3AED"]}
+        colors={colors.gradients.auth}
         start={{ x: 0, y: 0 }}
         end={{ x: 0.6, y: 1 }}
         style={styles.header}
@@ -317,14 +338,19 @@ export default function RegisterScreen() {
                     height: 4,
                     borderRadius: 999,
                     backgroundColor:
-                      i <= stepIndex ? "#6D28D9" : "rgb(182, 182, 182)",
+                      i <= stepIndex
+                        ? colors.brand.dark
+                        : colors.neutral.progressInactive,
                   }}
                 />
                 <Text
                   style={{
                     fontSize: 10,
                     fontWeight: "500",
-                    color: i <= stepIndex ? "#6D28D9" : "rgb(182, 182, 182)",
+                    color:
+                      i <= stepIndex
+                        ? colors.brand.dark
+                        : colors.neutral.progressInactive,
                   }}
                 >
                   {label}
@@ -512,31 +538,36 @@ export default function RegisterScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#F9FAFB" },
+  screen: { flex: 1, backgroundColor: colors.neutral.surface },
   header: { paddingHorizontal: 20, paddingTop: 56 },
   title: {
-    color: "white",
+    color: colors.neutral.white,
     fontWeight: "700",
     fontSize: 24,
     lineHeight: 28,
   },
-  subtitle: { color: "rgba(255,255,255,0.6)", fontSize: 14 },
+  subtitle: { color: colors.overlay.white60, fontSize: 14 },
   formScroll: { flex: 1, marginTop: -32 },
   formCard: {
-    backgroundColor: "white",
+    backgroundColor: colors.neutral.white,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     paddingHorizontal: 20,
     paddingTop: 24,
     paddingBottom: 24,
     flexGrow: 1,
-    shadowColor: "#000",
+    shadowColor: colors.neutral.black,
     shadowOpacity: 0.08,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: -2 },
     elevation: 4,
   },
-  label: { fontSize: 12, fontWeight: "600", color: "#4B5563", marginBottom: 6 },
+  label: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: colors.neutral.textMuted,
+    marginBottom: 6,
+  },
   rowBetween: {
     flexDirection: "row",
     alignItems: "center",
@@ -549,27 +580,38 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 16,
     borderWidth: 2,
-    borderColor: "#E5E7EB",
-    backgroundColor: "white",
+    borderColor: colors.neutral.border,
+    backgroundColor: colors.neutral.white,
   },
-  vehicleChipSelected: { borderColor: "#9333EA", backgroundColor: "#F3E8FF" },
-  vehicleChipText: { fontSize: 14, fontWeight: "500", color: "#4B5563" },
-  vehicleChipTextSelected: { color: "#6D28D9" },
+  vehicleChipSelected: {
+    borderColor: colors.brand.accent,
+    backgroundColor: colors.brand.pale,
+  },
+  vehicleChipText: {
+    fontSize: 14,
+    fontWeight: "500",
+    color: colors.neutral.textMuted,
+  },
+  vehicleChipTextSelected: { color: colors.brand.dark },
   batteryRow: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
   batteryChip: {
     paddingHorizontal: 16,
     paddingVertical: 10,
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: "#E5E7EB",
-    backgroundColor: "white",
+    borderColor: colors.neutral.border,
+    backgroundColor: colors.neutral.white,
   },
-  batteryChipText: { fontSize: 14, fontWeight: "600", color: "#6B7280" },
-  footerText: { fontSize: 14, color: "#6B7280" },
-  footerLink: { fontWeight: "700", color: "#6D28D9" },
+  batteryChipText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: colors.neutral.textSubtle,
+  },
+  footerText: { fontSize: 14, color: colors.neutral.textSubtle },
+  footerLink: { fontWeight: "700", color: colors.brand.dark },
   doneScreen: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: colors.neutral.white,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 32,
@@ -581,7 +623,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 20,
-    shadowColor: "#7C3AED",
+    shadowColor: colors.brand.primary,
     shadowOpacity: 0.4,
     shadowRadius: 24,
     shadowOffset: { width: 0, height: 8 },
@@ -589,21 +631,30 @@ const styles = StyleSheet.create({
   },
   doneTitle: {
     fontWeight: "900",
-    color: "#111827",
+    color: colors.neutral.text,
     fontSize: 24,
     marginBottom: 4,
   },
-  doneSubtitle: { fontSize: 14, color: "#6B7280", marginBottom: 8 },
-  dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: "#9333EA" },
+  doneSubtitle: {
+    fontSize: 14,
+    color: colors.neutral.textSubtle,
+    marginBottom: 8,
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: colors.brand.accent,
+  },
   backButton: {
     width: "100%",
     paddingVertical: 14,
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: "#E9D5FF",
-    backgroundColor: "#FAF5FF",
+    borderColor: colors.brand.border,
+    backgroundColor: colors.brand.surface,
     alignItems: "center",
   },
-  backButtonText: { fontSize: 14, fontWeight: "600", color: "#7E22CE" },
-  reviewCtaText: { fontSize: 14, fontWeight: "600", color: "#7E22CE" },
+  backButtonText: { fontSize: 14, fontWeight: "600", color: colors.brand.text },
+  reviewCtaText: { fontSize: 14, fontWeight: "600", color: colors.brand.text },
 });

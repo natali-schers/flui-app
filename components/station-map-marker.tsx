@@ -1,7 +1,7 @@
+import { colors } from "@/lib/theme/colors";
 import { Station } from "@/lib/types";
 import { getStatusColor } from "@/lib/utils";
 import { Ionicons } from "@expo/vector-icons";
-import React from "react";
 import { StyleSheet, View } from "react-native";
 
 interface Props {
@@ -21,7 +21,7 @@ export default function StationMapMarker({ station, selected }: Props) {
           selected && styles.bubbleSelected,
         ]}
       >
-        <Ionicons name="location" size={16} color="white" />
+        <Ionicons name="location" size={16} color={colors.neutral.white} />
       </View>
     </View>
   );
@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   bubbleSelected: {
-    backgroundColor: "#9333EA",
+    backgroundColor: colors.brand.accent,
     borderWidth: 2,
-    borderColor: "white",
+    borderColor: colors.neutral.white,
   },
 });

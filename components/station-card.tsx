@@ -1,5 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { colors } from "../lib/theme/colors";
 import { Station } from "../lib/types";
 import { getScoreGradient, getScoreLabel, getStatusColor } from "../lib/utils";
 
@@ -121,12 +122,12 @@ export default function StationCard({
 const styles = StyleSheet.create({
   card: {
     width: "100%",
-    backgroundColor: "white",
+    backgroundColor: colors.neutral.white,
     borderRadius: 16,
     padding: 16,
     borderWidth: 1,
-    borderColor: "#F3F4F6",
-    shadowColor: "#000",
+    borderColor: colors.neutral.borderLight,
+    shadowColor: colors.neutral.black,
     shadowOpacity: 0.04,
     shadowRadius: 6,
     shadowOffset: { width: 0, height: 2 },
@@ -141,16 +142,16 @@ const styles = StyleSheet.create({
   scoreValue: {
     fontSize: 18,
     fontWeight: "700",
-    color: "white",
+    color: colors.neutral.white,
     lineHeight: 20,
   },
   scoreLabel: {
     fontSize: 9,
-    color: "rgba(255,255,255,0.85)",
+    color: colors.overlay.white85,
     fontWeight: "500",
     lineHeight: 11,
   },
-  stars: { fontSize: 12, color: "#FBBF24", letterSpacing: -1 },
+  stars: { fontSize: 12, color: colors.semantic.rating, letterSpacing: -1 },
 
   // small variant
   topRow: {
@@ -159,7 +160,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 8,
   },
-  nameSmall: { fontWeight: "600", color: "#111827", fontSize: 14 },
+  nameSmall: { fontWeight: "600", color: colors.neutral.text, fontSize: 14 },
   metaRowSmall: {
     flexDirection: "row",
     alignItems: "center",
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
     gap: 6,
     marginTop: 8,
   },
-  amenityTextSmall: { fontSize: 12, color: "#6B7280" },
+  amenityTextSmall: { fontSize: 12, color: colors.neutral.textSubtle },
 
   // large variant
   topRowLarge: {
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 12,
   },
-  nameLarge: { fontWeight: "700", color: "#111827", fontSize: 16 },
+  nameLarge: { fontWeight: "700", color: colors.neutral.text, fontSize: 16 },
   ratingRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -190,8 +191,12 @@ const styles = StyleSheet.create({
     marginTop: 4,
     flexWrap: "wrap",
   },
-  ratingValue: { fontSize: 12, fontWeight: "500", color: "#374151" },
-  reviewCount: { fontSize: 12, color: "#9CA3AF" },
+  ratingValue: {
+    fontSize: 12,
+    fontWeight: "500",
+    color: colors.neutral.textSecondary,
+  },
+  reviewCount: { fontSize: 12, color: colors.neutral.placeholder },
   metaRowLarge: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -206,23 +211,23 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   amenityPill: {
-    backgroundColor: "#F9FAFB",
+    backgroundColor: colors.neutral.surface,
     borderRadius: 999,
     paddingHorizontal: 8,
     paddingVertical: 2,
   },
-  amenityTextLarge: { fontSize: 12, color: "#6B7280" },
+  amenityTextLarge: { fontSize: 12, color: colors.neutral.textSubtle },
   reasonBox: {
-    backgroundColor: "#FAF5FF",
+    backgroundColor: colors.brand.surface,
     borderRadius: 12,
     paddingHorizontal: 12,
     paddingVertical: 8,
     marginTop: 12,
   },
-  reasonText: { fontSize: 12, color: "#7E22CE", lineHeight: 17 },
+  reasonText: { fontSize: 12, color: colors.brand.text, lineHeight: 17 },
   statusInline: { flexDirection: "row", alignItems: "center", gap: 4 },
   statusDot: { width: 8, height: 8, borderRadius: 4 },
   statusText: { fontSize: 12, fontWeight: "500" },
-  metaDot: { fontSize: 12, color: "#9CA3AF" },
-  metaText: { fontSize: 12, color: "#6B7280" },
+  metaDot: { fontSize: 12, color: colors.neutral.placeholder },
+  metaText: { fontSize: 12, color: colors.neutral.textSubtle },
 });

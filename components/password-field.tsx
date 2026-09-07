@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
     StyleSheet,
     Text,
@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
+import { colors } from "../lib/theme/colors";
 import { EyeIcon } from "./icons";
 
 interface PasswordFieldProps extends Omit<
@@ -29,7 +30,7 @@ export default function PasswordField({
       <Text style={styles.label}>{label}</Text>
       <View style={{ position: "relative", justifyContent: "center" }}>
         <TextInput
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor={colors.neutral.placeholder}
           secureTextEntry={!visible}
           style={[
             styles.input,
@@ -52,20 +53,30 @@ export default function PasswordField({
 }
 
 const styles = StyleSheet.create({
-  label: { fontSize: 12, fontWeight: "600", color: "#4B5563", marginBottom: 6 },
+  label: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: colors.neutral.textMuted,
+    marginBottom: 6,
+  },
   input: {
     width: "100%",
-    backgroundColor: "#F9FAFB",
+    backgroundColor: colors.neutral.surface,
     borderWidth: 2,
-    borderColor: "#E5E7EB",
+    borderColor: colors.neutral.border,
     borderRadius: 16,
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 14,
-    color: "#111827",
+    color: colors.neutral.text,
   },
-  inputError: { borderColor: "#FCA5A5" },
-  fieldError: { fontSize: 12, color: "#EF4444", marginTop: 4, marginLeft: 4 },
+  inputError: { borderColor: colors.semantic.errorBorder },
+  fieldError: {
+    fontSize: 12,
+    color: colors.semantic.errorBright,
+    marginTop: 4,
+    marginLeft: 4,
+  },
   eyeButton: {
     position: "absolute",
     right: 16,

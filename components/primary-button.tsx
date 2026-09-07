@@ -1,14 +1,15 @@
 import { LinearGradient } from "expo-linear-gradient";
 import {
-  ActivityIndicator,
-  StyleProp,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  TouchableOpacityProps,
-  View,
-  ViewStyle,
+    ActivityIndicator,
+    StyleProp,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    TouchableOpacityProps,
+    View,
+    ViewStyle,
 } from "react-native";
+import { colors } from "../lib/theme/colors";
 
 interface PrimaryButtonProps extends TouchableOpacityProps {
   label: string;
@@ -32,14 +33,14 @@ export default function PrimaryButton({
       {...touchableProps}
     >
       <LinearGradient
-        colors={["#7C3AED", "#9333EA"]}
+        colors={colors.gradients.primaryButton}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={[styles.button, { opacity: loading ? 0.8 : 1 }, gradientStyle]}
       >
         {loading ? (
           <View style={styles.loadingRow}>
-            <ActivityIndicator color="white" size="small" />
+            <ActivityIndicator color={colors.neutral.white} size="small" />
             <Text style={styles.text}>{loadingLabel ?? label}</Text>
           </View>
         ) : (
@@ -57,12 +58,12 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: "center",
     marginBottom: 16,
-    shadowColor: "#7C3AED",
+    shadowColor: colors.brand.primary,
     shadowOpacity: 0.4,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 4 },
     elevation: 6,
   },
-  text: { color: "white", fontWeight: "700", fontSize: 14 },
+  text: { color: colors.neutral.white, fontWeight: "700", fontSize: 14 },
   loadingRow: { flexDirection: "row", alignItems: "center", gap: 8 },
 });

@@ -6,6 +6,7 @@ import StationFilterModal, {
 import StationMapMarker from "@/components/station-map-marker";
 import StationPreviewCard from "@/components/station-preview.card";
 import { stations } from "@/lib/data";
+import { colors } from "@/lib/theme/colors";
 import { Station } from "@/lib/types";
 import * as Location from "expo-location";
 import { router, useFocusEffect } from "expo-router";
@@ -202,7 +203,7 @@ export default function MapScreen() {
               value={search}
               onChangeText={setSearch}
               placeholder="Buscar nesta área…"
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor={colors.neutral.placeholder}
               style={styles.searchInput}
             />
           </View>
@@ -223,15 +224,30 @@ export default function MapScreen() {
 
       <View style={styles.legend} pointerEvents="none">
         <View style={styles.legendRow}>
-          <View style={[styles.legendDot, { backgroundColor: "#16A34A" }]} />
+          <View
+            style={[
+              styles.legendDot,
+              { backgroundColor: colors.semantic.success },
+            ]}
+          />
           <Text style={styles.legendText}>Disponível</Text>
         </View>
         <View style={styles.legendRow}>
-          <View style={[styles.legendDot, { backgroundColor: "#D97706" }]} />
+          <View
+            style={[
+              styles.legendDot,
+              { backgroundColor: colors.semantic.warning },
+            ]}
+          />
           <Text style={styles.legendText}>Ocupada</Text>
         </View>
         <View style={styles.legendRow}>
-          <View style={[styles.legendDot, { backgroundColor: "#DC2626" }]} />
+          <View
+            style={[
+              styles.legendDot,
+              { backgroundColor: colors.semantic.error },
+            ]}
+          />
           <Text style={styles.legendText}>Indisponível</Text>
         </View>
       </View>
@@ -260,7 +276,7 @@ export default function MapScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#E5E7EB" },
+  screen: { flex: 1, backgroundColor: colors.neutral.surfaceMuted },
   topOverlay: { position: "absolute", top: 0, left: 0, right: 0 },
   topRow: {
     flexDirection: "row",
@@ -273,52 +289,60 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-    backgroundColor: "white",
+    backgroundColor: colors.neutral.white,
     borderRadius: 16,
     paddingHorizontal: 14,
     height: 46,
-    shadowColor: "#000",
+    shadowColor: colors.neutral.black,
     shadowOpacity: 0.1,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },
     elevation: 4,
   },
-  searchInput: { flex: 1, fontSize: 13, color: "#111827" },
+  searchInput: { flex: 1, fontSize: 13, color: colors.neutral.text },
   filterButton: {
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
-    backgroundColor: "white",
+    backgroundColor: colors.neutral.white,
     borderRadius: 16,
     paddingHorizontal: 14,
     height: 46,
-    shadowColor: "#000",
+    shadowColor: colors.neutral.black,
     shadowOpacity: 0.1,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },
     elevation: 4,
   },
-  filterButtonText: { fontSize: 13, fontWeight: "600", color: "#7C3AED" },
+  filterButtonText: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: colors.brand.primary,
+  },
   filterBadge: {
     minWidth: 16,
     height: 16,
     borderRadius: 8,
-    backgroundColor: "#7C3AED",
+    backgroundColor: colors.brand.primary,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 3,
   },
-  filterBadgeText: { fontSize: 9, fontWeight: "700", color: "white" },
+  filterBadgeText: {
+    fontSize: 9,
+    fontWeight: "700",
+    color: colors.neutral.white,
+  },
   legend: {
     position: "absolute",
     left: 16,
     bottom: 24,
-    backgroundColor: "rgba(255,255,255,0.95)",
+    backgroundColor: colors.overlay.white95,
     borderRadius: 14,
     paddingHorizontal: 12,
     paddingVertical: 10,
     gap: 6,
-    shadowColor: "#000",
+    shadowColor: colors.neutral.black,
     shadowOpacity: 0.1,
     shadowRadius: 6,
     shadowOffset: { width: 0, height: 2 },
@@ -326,7 +350,11 @@ const styles = StyleSheet.create({
   },
   legendRow: { flexDirection: "row", alignItems: "center", gap: 6 },
   legendDot: { width: 8, height: 8, borderRadius: 4 },
-  legendText: { fontSize: 11, color: "#4B5563", fontWeight: "500" },
+  legendText: {
+    fontSize: 11,
+    color: colors.neutral.textMuted,
+    fontWeight: "500",
+  },
   locateButton: {
     position: "absolute",
     right: 16,
@@ -334,10 +362,10 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: "white",
+    backgroundColor: colors.neutral.white,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "#000",
+    shadowColor: colors.neutral.black,
     shadowOpacity: 0.15,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },

@@ -2,6 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { colors } from "../../lib/theme/colors";
 
 export default function WelcomeScreen() {
   function onRegister() {
@@ -14,7 +15,7 @@ export default function WelcomeScreen() {
 
   return (
     <LinearGradient
-      colors={["#3B0764", "#6D28D9", "#9333EA", "#B747F8"]}
+      colors={colors.gradients.welcome}
       locations={[0, 0.4, 0.75, 1]}
       start={{ x: 0, y: 0 }}
       end={{ x: 0.7, y: 1 }}
@@ -80,19 +81,19 @@ const styles = StyleSheet.create({
   divider: {
     width: 40,
     height: 2,
-    backgroundColor: "rgba(255,255,255,0.4)",
+    backgroundColor: colors.overlay.white40,
     borderRadius: 999,
     marginTop: 16,
     marginBottom: 16,
   },
   tagline: {
-    color: "rgba(255,255,255,0.75)",
+    color: colors.overlay.white75,
     fontSize: 13,
     lineHeight: 18,
     textAlign: "center",
     maxWidth: 280,
   },
-  taglineBold: { color: "white", fontWeight: "600" },
+  taglineBold: { color: colors.neutral.white, fontWeight: "600" },
   ctaArea: {
     paddingHorizontal: 24,
     paddingBottom: 64,
@@ -102,30 +103,38 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingVertical: 16,
     borderRadius: 16,
-    backgroundColor: "white",
+    backgroundColor: colors.neutral.white,
     alignItems: "center",
-    shadowColor: "#000",
+    shadowColor: colors.neutral.black,
     shadowOpacity: 0.2,
     shadowRadius: 20,
     shadowOffset: { width: 0, height: 4 },
     elevation: 6,
   },
-  primaryButtonText: { color: "#581C87", fontWeight: "700", fontSize: 14 },
+  primaryButtonText: {
+    color: colors.brand.buttonDark,
+    fontWeight: "700",
+    fontSize: 14,
+  },
   secondaryButton: {
     width: "100%",
     paddingVertical: 16,
     borderRadius: 16,
-    backgroundColor: "rgba(255,255,255,0.12)",
+    backgroundColor: colors.overlay.white12,
     borderWidth: 2,
-    borderColor: "rgba(255,255,255,0.3)",
+    borderColor: colors.overlay.white30,
     alignItems: "center",
   },
-  secondaryButtonText: { color: "white", fontWeight: "600", fontSize: 14 },
+  secondaryButtonText: {
+    color: colors.neutral.white,
+    fontWeight: "600",
+    fontSize: 14,
+  },
   terms: {
     textAlign: "center",
     fontSize: 10,
     lineHeight: 14,
-    color: "rgba(255,255,255,0.4)",
+    color: colors.overlay.white40,
     paddingHorizontal: 16,
   },
   underline: { textDecorationLine: "underline" },

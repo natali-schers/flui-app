@@ -1,5 +1,5 @@
-import React from "react";
 import Svg, { Circle, Path } from "react-native-svg";
+import { colors } from "../lib/theme/colors";
 
 export function EyeIcon({ visible }: { visible: boolean }) {
   if (visible) {
@@ -9,7 +9,7 @@ export function EyeIcon({ visible }: { visible: boolean }) {
         width={20}
         height={20}
         fill="none"
-        stroke="#9CA3AF"
+        stroke={colors.neutral.placeholder}
         strokeWidth={2}
       >
         <Path
@@ -26,7 +26,7 @@ export function EyeIcon({ visible }: { visible: boolean }) {
       width={20}
       height={20}
       fill="none"
-      stroke="#9CA3AF"
+      stroke={colors.neutral.placeholder}
       strokeWidth={2}
     >
       <Path
@@ -46,7 +46,7 @@ export function BellIcon() {
       width={16}
       height={16}
       fill="none"
-      stroke="#6B7280"
+      stroke={colors.neutral.textSubtle}
       strokeWidth={2}
     >
       <Path
@@ -65,7 +65,7 @@ export function SearchIcon() {
       width={16}
       height={16}
       fill="none"
-      stroke="#9CA3AF"
+      stroke={colors.neutral.placeholder}
       strokeWidth={2}
     >
       <Circle cx={11} cy={11} r={8} />
@@ -74,7 +74,11 @@ export function SearchIcon() {
   );
 }
 
-export function ArrowRightIcon({ color = "#9CA3AF" }: { color?: string }) {
+export function ArrowRightIcon({
+  color = colors.neutral.placeholder,
+}: {
+  color?: string;
+}) {
   return (
     <Svg
       viewBox="0 0 24 24"
@@ -102,7 +106,7 @@ export function CheckIcon({
       width={size}
       height={size}
       fill="none"
-      stroke="white"
+      stroke={colors.neutral.white}
       strokeWidth={strokeWidth}
     >
       <Path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
@@ -110,7 +114,7 @@ export function CheckIcon({
   );
 }
 
-export function BackIcon({ color = "white" }: { color?: string }) {
+export function BackIcon({ color = colors.neutral.white }: { color?: string }) {
   return (
     <Svg
       viewBox="0 0 24 24"
@@ -131,8 +135,8 @@ export function HeartIcon({ filled }: { filled: boolean }) {
       viewBox="0 0 24 24"
       width={20}
       height={20}
-      fill={filled ? "#9333EA" : "none"}
-      stroke={filled ? "#9333EA" : "#6B7280"}
+      fill={filled ? colors.brand.accent : "none"}
+      stroke={filled ? colors.brand.accent : colors.neutral.textSubtle}
       strokeWidth={2}
     >
       <Path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
@@ -140,7 +144,7 @@ export function HeartIcon({ filled }: { filled: boolean }) {
   );
 }
 
-export function ClockIcon({ color = "#9333EA" }: { color?: string }) {
+export function ClockIcon({ color = colors.brand.accent }: { color?: string }) {
   return (
     <Svg
       viewBox="0 0 24 24"
@@ -156,7 +160,11 @@ export function ClockIcon({ color = "#9333EA" }: { color?: string }) {
   );
 }
 
-export function FilterIcon({ color = "#9333EA" }: { color?: string }) {
+export function FilterIcon({
+  color = colors.brand.accent,
+}: {
+  color?: string;
+}) {
   return (
     <Svg
       viewBox="0 0 24 24"
@@ -175,7 +183,11 @@ export function FilterIcon({ color = "#9333EA" }: { color?: string }) {
   );
 }
 
-export function LocateIcon({ color = "#7C3AED" }: { color?: string }) {
+export function LocateIcon({
+  color = colors.brand.primary,
+}: {
+  color?: string;
+}) {
   return (
     <Svg
       viewBox="0 0 24 24"
@@ -191,7 +203,11 @@ export function LocateIcon({ color = "#7C3AED" }: { color?: string }) {
   );
 }
 
-export function CloseIcon({ color = "#6B7280" }: { color?: string }) {
+export function CloseIcon({
+  color = colors.neutral.textSubtle,
+}: {
+  color?: string;
+}) {
   return (
     <Svg
       viewBox="0 0 24 24"

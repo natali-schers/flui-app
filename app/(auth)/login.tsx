@@ -2,17 +2,18 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import {
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
+    KeyboardAvoidingView,
+    Platform,
+    ScrollView,
+    StyleSheet,
+    Text,
+    View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FormField from "../../components/form-field";
 import PasswordField from "../../components/password-field";
 import PrimaryButton from "../../components/primary-button";
+import { colors } from "../../lib/theme/colors";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -53,7 +54,7 @@ export default function LoginScreen() {
   return (
     <View style={styles.screen}>
       <LinearGradient
-        colors={["#3B0764", "#7C3AED"]}
+        colors={colors.gradients.auth}
         start={{ x: 0, y: 0 }}
         end={{ x: 0.6, y: 1 }}
         style={styles.header}
@@ -127,30 +128,30 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#F9FAFB" },
+  screen: { flex: 1, backgroundColor: colors.neutral.surface },
   header: { paddingHorizontal: 20, paddingTop: 56 },
   title: {
-    color: "white",
+    color: colors.neutral.white,
     fontWeight: "700",
     fontSize: 24,
     lineHeight: 28,
   },
-  subtitle: { color: "rgba(255,255,255,0.6)", fontSize: 14 },
+  subtitle: { color: colors.overlay.white60, fontSize: 14 },
   formScroll: { flex: 1, marginTop: -32 },
   formCard: {
-    backgroundColor: "white",
+    backgroundColor: colors.neutral.white,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     paddingHorizontal: 20,
     paddingTop: 24,
     paddingBottom: 24,
     flexGrow: 1,
-    shadowColor: "#000",
+    shadowColor: colors.neutral.black,
     shadowOpacity: 0.08,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: -2 },
     elevation: 4,
   },
-  footerText: { fontSize: 14, color: "#6B7280" },
-  footerLink: { fontWeight: "700", color: "#6D28D9" },
+  footerText: { fontSize: 14, color: colors.neutral.textSubtle },
+  footerLink: { fontWeight: "700", color: colors.brand.dark },
 });

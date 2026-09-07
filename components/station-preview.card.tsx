@@ -1,3 +1,4 @@
+import { colors } from "@/lib/theme/colors";
 import { Station } from "@/lib/types";
 import { getScoreGradient, getStatusColor } from "@/lib/utils";
 import { LinearGradient } from "expo-linear-gradient";
@@ -70,13 +71,13 @@ export default function StationPreviewCard({ station, onViewDetails }: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "white",
+    backgroundColor: colors.neutral.white,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     paddingHorizontal: 20,
     paddingTop: 8,
     paddingBottom: 24,
-    shadowColor: "#000",
+    shadowColor: colors.neutral.black,
     shadowOpacity: 0.15,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: -4 },
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 4,
     borderRadius: 999,
-    backgroundColor: "#E5E7EB",
+    backgroundColor: colors.neutral.surfaceMuted,
     alignSelf: "center",
     marginBottom: 16,
   },
@@ -97,8 +98,13 @@ const styles = StyleSheet.create({
     gap: 12,
     marginBottom: 12,
   },
-  name: { fontWeight: "700", color: "#111827", fontSize: 16, marginBottom: 4 },
-  scoreInline: { fontSize: 11, color: "#9CA3AF" },
+  name: {
+    fontWeight: "700",
+    color: colors.neutral.text,
+    fontSize: 16,
+    marginBottom: 4,
+  },
+  scoreInline: { fontSize: 11, color: colors.neutral.placeholder },
   scoreBadge: {
     borderRadius: 12,
     paddingHorizontal: 12,
@@ -106,13 +112,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   scoreValue: {
-    color: "white",
+    color: colors.neutral.white,
     fontWeight: "800",
     fontSize: 20,
     lineHeight: 22,
   },
   scoreLabel: {
-    color: "rgba(255,255,255,0.85)",
+    color: colors.overlay.white85,
     fontSize: 8,
     fontWeight: "600",
     marginTop: 1,
@@ -126,8 +132,8 @@ const styles = StyleSheet.create({
   statusInline: { flexDirection: "row", alignItems: "center", gap: 4 },
   statusDot: { width: 8, height: 8, borderRadius: 4 },
   statusText: { fontSize: 12, fontWeight: "500" },
-  metaText: { fontSize: 12, color: "#6B7280" },
-  metaDot: { fontSize: 12, color: "#6B7280" },
+  metaText: { fontSize: 12, color: colors.neutral.textSubtle },
+  metaDot: { fontSize: 12, color: colors.neutral.textSubtle },
   amenitiesRow: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -136,10 +142,10 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   amenityChip: {
-    backgroundColor: "#F3F4F6",
+    backgroundColor: colors.neutral.borderLight,
     borderRadius: 999,
     paddingHorizontal: 10,
     paddingVertical: 4,
   },
-  amenityChipText: { fontSize: 11, color: "#4B5563" },
+  amenityChipText: { fontSize: 11, color: colors.neutral.textMuted },
 });

@@ -8,6 +8,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { colors } from "../lib/theme/colors";
 import { BackIcon } from "./icons";
 import PrimaryButton from "./primary-button";
 
@@ -96,7 +97,7 @@ export default function StationFilterModal({
       <SafeAreaView style={styles.screen}>
         <View style={styles.header}>
           <TouchableOpacity onPress={onClose} style={styles.backButton}>
-            <BackIcon color="#374151" />
+            <BackIcon color={colors.neutral.textSecondary} />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Filtrar pontos</Text>
           <TouchableOpacity onPress={handleClear}>
@@ -242,7 +243,7 @@ export default function StationFilterModal({
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "white" },
+  screen: { flex: 1, backgroundColor: colors.neutral.white },
   header: {
     flexDirection: "row",
     alignItems: "center",
@@ -250,23 +251,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderBottomColor: "#F3F4F6",
+    borderBottomColor: colors.neutral.borderLight,
   },
   backButton: {
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: "#F3F4F6",
+    backgroundColor: colors.neutral.borderLight,
     alignItems: "center",
     justifyContent: "center",
   },
-  headerTitle: { fontSize: 16, fontWeight: "700", color: "#111827" },
-  clearText: { fontSize: 14, fontWeight: "600", color: "#9333EA" },
+  headerTitle: { fontSize: 16, fontWeight: "700", color: colors.neutral.text },
+  clearText: { fontSize: 14, fontWeight: "600", color: colors.brand.accent },
   content: { padding: 20, gap: 24 },
   sectionTitle: {
     fontSize: 13,
     fontWeight: "700",
-    color: "#111827",
+    color: colors.neutral.text,
     marginBottom: 10,
   },
   chipsWrap: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
@@ -275,42 +276,49 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 999,
     borderWidth: 2,
-    borderColor: "#E5E7EB",
-    backgroundColor: "white",
+    borderColor: colors.neutral.border,
+    backgroundColor: colors.neutral.white,
   },
-  chipSelected: { borderColor: "#9333EA", backgroundColor: "#F3E8FF" },
-  chipText: { fontSize: 13, fontWeight: "500", color: "#4B5563" },
-  chipTextSelected: { color: "#6D28D9" },
+  chipSelected: {
+    borderColor: colors.brand.accent,
+    backgroundColor: colors.brand.pale,
+  },
+  chipText: {
+    fontSize: 13,
+    fontWeight: "500",
+    color: colors.neutral.textMuted,
+  },
+  chipTextSelected: { color: colors.brand.dark },
   amenityRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     borderWidth: 2,
-    borderColor: "#E5E7EB",
+    borderColor: colors.neutral.border,
     borderRadius: 14,
     paddingHorizontal: 16,
     paddingVertical: 14,
   },
-  amenityRowText: { fontSize: 14, color: "#374151" },
+  amenityRowText: { fontSize: 14, color: colors.neutral.textSecondary },
   checkbox: {
     width: 20,
     height: 20,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: "#D1D5DB",
+    borderColor: colors.neutral.checkbox,
     alignItems: "center",
     justifyContent: "center",
   },
-  checkboxSelected: { borderColor: "#9333EA" },
+  checkboxSelected: { borderColor: colors.brand.accent },
   checkboxDot: {
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: "#9333EA",
+    backgroundColor: colors.brand.accent,
   },
   footer: {
     padding: 20,
     borderTopWidth: 1,
-    borderTopColor: "#F3F4F6",
+    borderTopColor: colors.neutral.borderLight,
   },
 });

@@ -1,3 +1,4 @@
+import { colors } from "./theme/colors";
 import { Station } from "./types";
 
 /** Emoji usado para cada comodidade. Adicione novas chaves conforme necessário. */
@@ -21,10 +22,10 @@ export const AMENITY_ICONS: Record<string, string> = {
  * `colors` do `LinearGradient` (expo-linear-gradient).
  */
 export function getScoreGradient(score: number): [string, string] {
-  if (score >= 85) return ["#16A34A", "#22C55E"];
-  if (score >= 70) return ["#7C3AED", "#B747F8"];
-  if (score >= 50) return ["#D97706", "#F59E0B"];
-  return ["#DC2626", "#EF4444"];
+  if (score >= 85) return colors.gradients.scoreExcellent;
+  if (score >= 70) return colors.gradients.scoreGood;
+  if (score >= 50) return colors.gradients.scoreAverage;
+  return colors.gradients.scoreLow;
 }
 
 /** Rótulo curto (adjetivo) correspondente à faixa de score. */
@@ -38,12 +39,12 @@ export function getScoreLabel(score: number): string | undefined {
 export function getStatusColor(status: Station["status"]): string {
   switch (status) {
     case "available":
-      return "#16A34A";
+      return colors.semantic.success;
     case "busy":
-      return "#D97706";
+      return colors.semantic.warning;
     case "unavailable":
     default:
-      return "#DC2626";
+      return colors.semantic.error;
   }
 }
 

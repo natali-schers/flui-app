@@ -46,13 +46,11 @@ function ScoreBreakdown({ score }: { score: StationScoreDetails }) {
     { icon: "⭐", label: "Avaliações", value: score.ratings },
     { icon: "🛡️", label: "Confiabilidade", value: score.reliability },
     { icon: "☕", label: "Comodidades", value: score.amenities },
-    { icon: "📍", label: "Distância", value: score.distance },
   ];
   return (
     <View style={{ gap: 10 }}>
       {items.map((item) => (
         <View key={item.label} style={styles.breakdownRow}>
-          <Text style={styles.breakdownIcon}>{item.icon}</Text>
           <Text style={styles.breakdownLabel}>{item.label}</Text>
           <View style={styles.breakdownTrack}>
             <View style={[styles.breakdownFill, { width: `${item.value}%` }]} />
@@ -165,7 +163,7 @@ export default function StationDetailScreen({
             <ScoreBreakdown score={station.scoreDetails} />
             <Text style={styles.breakdownFootnote}>
               O Flui Score considera disponibilidade, velocidade, avaliações,
-              confiabilidade, comodidades e distância.
+              confiabilidade e comodidades.
             </Text>
           </View>
         )}
